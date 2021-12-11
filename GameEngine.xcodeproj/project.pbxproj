@@ -30,6 +30,9 @@
 		A6EE15912756C80B00FFF7CD /* VertexDescriptorLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EE15902756C80B00FFF7CD /* VertexDescriptorLibrary.swift */; };
 		A6EE15942756CF9300FFF7CD /* RenderPipelineDescriptorLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EE15932756CF9300FFF7CD /* RenderPipelineDescriptorLibrary.swift */; };
 		A6EE15972756D12800FFF7CD /* RenderPipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EE15962756D12800FFF7CD /* RenderPipelineStateLibrary.swift */; };
+		A6FE64462761EC2B0087470C /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE64452761EC2B0087470C /* Keyboard.swift */; };
+		A6FE64492761ECA30087470C /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE64482761ECA30087470C /* KeyCodes.swift */; };
+		A6FE644C276364D00087470C /* Mouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE644B276364D00087470C /* Mouse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,9 @@
 		A6EE15902756C80B00FFF7CD /* VertexDescriptorLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertexDescriptorLibrary.swift; sourceTree = "<group>"; };
 		A6EE15932756CF9300FFF7CD /* RenderPipelineDescriptorLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipelineDescriptorLibrary.swift; sourceTree = "<group>"; };
 		A6EE15962756D12800FFF7CD /* RenderPipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipelineStateLibrary.swift; sourceTree = "<group>"; };
+		A6FE64452761EC2B0087470C /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		A6FE64482761ECA30087470C /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
+		A6FE644B276364D00087470C /* Mouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mouse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 		A6A5C6E6275690DA00FE9802 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A6FE64442761EC140087470C /* Input */,
 				A6A5C6E227563B7D00FE9802 /* Types.swift */,
 				A6A5C6EA275692B900FE9802 /* Engine.swift */,
 				A6A5C6ED2756936500FE9802 /* Preferences.swift */,
@@ -198,6 +205,16 @@
 				A6B6AA33275CF9AE006BAD63 /* SceneManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		A6FE64442761EC140087470C /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				A6FE64452761EC2B0087470C /* Keyboard.swift */,
+				A6FE64482761ECA30087470C /* KeyCodes.swift */,
+				A6FE644B276364D00087470C /* Mouse.swift */,
+			);
+			path = Input;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +293,7 @@
 				A6267925274D3CD70087FE51 /* MyShaders.metal in Sources */,
 				A6A5C6EE2756936500FE9802 /* Preferences.swift in Sources */,
 				A699E26727593B2A00330912 /* MeshLibrary.swift in Sources */,
+				A6FE644C276364D00087470C /* Mouse.swift in Sources */,
 				A6A5C6F1275695AB00FE9802 /* ShaderLibrary.swift in Sources */,
 				A699E2642759354900330912 /* Renderer.swift in Sources */,
 				A6A5C6EB275692B900FE9802 /* Engine.swift in Sources */,
@@ -283,6 +301,8 @@
 				A6267908274CD2350087FE51 /* GameEngine.xcdatamodeld in Sources */,
 				A6267922274CEDCE0087FE51 /* GameView.swift in Sources */,
 				A6B6AA28275BADC6006BAD63 /* Math.swift in Sources */,
+				A6FE64462761EC2B0087470C /* Keyboard.swift in Sources */,
+				A6FE64492761ECA30087470C /* KeyCodes.swift in Sources */,
 				A699E260275933D900330912 /* GameObject.swift in Sources */,
 				A634FCC0275A5AE8002AD5A6 /* Node.swift in Sources */,
 				A6A5C6E327563B7D00FE9802 /* Types.swift in Sources */,
