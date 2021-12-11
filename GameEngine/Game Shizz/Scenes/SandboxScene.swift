@@ -2,13 +2,14 @@ import MetalKit
 
 class SandboxScene: Scene {
     
-    var player = Player()
+    var debugCamera: Camera = DebugCamera()
     
     override func buildScene() {
-        let count = 20
+        addCamera(camera: debugCamera)
+        let count = 5
         for y in -count..<count  {
             for x in -count..<count {
-                let player = Player()
+                let player = Pointer(camera: debugCamera)
                 player.position.y = (Float(y) + 0.5) / Float(count)
                 player.position.x = (Float(x) + 0.5) / Float(count)
                 player.scale = float3(0.1)
