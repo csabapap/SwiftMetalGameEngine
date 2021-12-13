@@ -4,10 +4,15 @@ enum CameraType {
     case Debug
 }
 
+protocol CameraUpdateListener {
+    func updateCamera(deltaTime: Float)
+}
+
 protocol Camera {
     var cameraType: CameraType { get }
     var position: float3 {get set }
     func update(deltaTime: Float)
+    var delegate: CameraUpdateListener? { get set }
 }
 
 extension Camera {
