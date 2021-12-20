@@ -20,6 +20,10 @@ extension Float {
     var toDegrees: Float {
         return self * (180.0 / Float.pi)
     }
+    
+    static var randomZeroToOne: Float{
+        return Float(arc4random()) / Float(UINT32_MAX)
+    }
 }
 
 extension matrix_float4x4 {
@@ -58,7 +62,7 @@ extension matrix_float4x4 {
         self = matrix_multiply(self, result)
     }
     
-    mutating func rotate(angle: Float, axis: float3){
+    mutating func rotate(angle: Float, axis: float3) {
         var result = matrix_identity_float4x4
         
         let x: Float = axis.x

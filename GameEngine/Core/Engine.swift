@@ -13,6 +13,6 @@ class Engine {
         RenderPipelineDescriptorLibrary.initialize()
         RenderPipelineStateLibrary.initialize()
         MeshLibrary.initialize()
-        SceneManager.initialize(Preferences.StartScene)
+        SceneManager.initialize(SceneType.CubesScene)
     }
 }

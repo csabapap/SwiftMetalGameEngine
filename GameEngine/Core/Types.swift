@@ -20,7 +20,11 @@ extension sizeable {
     }
 }
 
-extension Float: sizeable { }
+extension Float: sizeable {
+    func randomFromZeroToOne() -> Float {
+        return Float.random(in: 0...1)
+    }
+}
 
 extension float3: sizeable { }
 
@@ -36,4 +40,14 @@ struct ModelConstants: sizeable {
 struct SceneConstants: sizeable {
     var viewMatrix = matrix_identity_float4x4
     var projectionMatrix = matrix_identity_float4x4
+}
+
+struct Material: sizeable {
+    var color: float4
+    var isActive: Bool
+    
+    init() {
+        color = float4(0.9, 0.3, 0.4, 1.0)
+        isActive = false
+    }
 }

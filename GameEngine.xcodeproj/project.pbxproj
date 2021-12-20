@@ -33,8 +33,10 @@
 		A6FE64462761EC2B0087470C /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE64452761EC2B0087470C /* Keyboard.swift */; };
 		A6FE64492761ECA30087470C /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE64482761ECA30087470C /* KeyCodes.swift */; };
 		A6FE644C276364D00087470C /* Mouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE644B276364D00087470C /* Mouse.swift */; };
+		E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8961446276B8D9700D4447F /* ColorUtils.swift */; };
 		E8C5945C27677C8900B9B48C /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945B27677C8900B9B48C /* Cube.swift */; };
 		E8C5945E2769102E00B9B48C /* DepthStencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */; };
+		E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C59465276B19EB00B9B48C /* CubesScene.swift */; };
 		E8D74E142765052A00F2F3C9 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D74E132765052A00F2F3C9 /* Camera.swift */; };
 		E8D74E162765060F00F2F3C9 /* DebugCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D74E152765060F00F2F3C9 /* DebugCamera.swift */; };
 		E8D74E1827652A1A00F2F3C9 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D74E1727652A1A00F2F3C9 /* CameraManager.swift */; };
@@ -70,8 +72,10 @@
 		A6FE64452761EC2B0087470C /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		A6FE64482761ECA30087470C /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		A6FE644B276364D00087470C /* Mouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mouse.swift; sourceTree = "<group>"; };
+		E8961446276B8D9700D4447F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		E8C5945B27677C8900B9B48C /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStencilStateLibrary.swift; sourceTree = "<group>"; };
+		E8C59465276B19EB00B9B48C /* CubesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesScene.swift; sourceTree = "<group>"; };
 		E8D74E132765052A00F2F3C9 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E8D74E152765060F00F2F3C9 /* DebugCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCamera.swift; sourceTree = "<group>"; };
 		E8D74E1727652A1A00F2F3C9 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 		A6267901274CD2350087FE51 /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				E8C59461276A1D4A00B9B48C /* Utils */,
 				A6B6AA26275BADB2006BAD63 /* Maths */,
 				A6A5C6E6275690DA00FE9802 /* Core */,
 				A699E25E275933BA00330912 /* Game Shizz */,
@@ -206,6 +211,7 @@
 			children = (
 				A6B6AA2C275CF770006BAD63 /* Scene.swift */,
 				A6B6AA2F275CF891006BAD63 /* SandboxScene.swift */,
+				E8C59465276B19EB00B9B48C /* CubesScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -237,6 +243,14 @@
 				E8C5945B27677C8900B9B48C /* Cube.swift */,
 			);
 			path = GameObjects;
+			sourceTree = "<group>";
+		};
+		E8C59461276A1D4A00B9B48C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E8961446276B8D9700D4447F /* ColorUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		E8D74E122765050700F2F3C9 /* Cameras */ = {
@@ -343,9 +357,11 @@
 				A6A5C6E327563B7D00FE9802 /* Types.swift in Sources */,
 				A6267903274CD2350087FE51 /* AppDelegate.swift in Sources */,
 				E8D74E142765052A00F2F3C9 /* Camera.swift in Sources */,
+				E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */,
 				A634FCBD275A5A29002AD5A6 /* Pointer.swift in Sources */,
 				A6B6AA30275CF891006BAD63 /* SandboxScene.swift in Sources */,
 				A6EE15972756D12800FFF7CD /* RenderPipelineStateLibrary.swift in Sources */,
+				E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
