@@ -2,6 +2,7 @@ import MetalKit
 
 enum RenderPipelineDescriptorType {
     case Basic
+    case Instanced
 }
 
 class RenderPipelineDescriptorLibrary {
@@ -14,6 +15,7 @@ class RenderPipelineDescriptorLibrary {
     
     private static func createDefaultRenderPipelineDescriptor() {
         renderPipelineDescriptors.updateValue(BasicRenderPipelineDescriptor(), forKey: .Basic)
+        renderPipelineDescriptors.updateValue(InstancedRenderPipelineDescriptor(), forKey: .Instanced)
     }
     
     static func getRenderPipelineDescriptor(_ type: RenderPipelineDescriptorType) -> MTLRenderPipelineDescriptor {
@@ -36,6 +38,22 @@ struct BasicRenderPipelineDescriptor: RenderPipelineDescriptor {
         descriptor.depthAttachmentPixelFormat = Preferences.MainDepthPixelFormat
         
         descriptor.vertexFunction = ShaderLibrary.getVertexFunction(.Basic)
+        descriptor.fragmentFunction = ShaderLibrary.getFragmentFunction(.Basic)
+        
+        descriptor.vertexDescriptor = VertexDescriptorLibrary.getVertexDescriptor(.Basic)
+    }
+}
+
+struct InstancedRenderPipelineDescriptor: RenderPipelineDescriptor {
+    var name: String = "Basic Render Pipeline Descriptor"
+    
+    var descriptor: MTLRenderPipelineDescriptor!
+    init() {
+        descriptor = MTLRenderPipelineDescriptor()
+        descriptor.colorAttachments[0].pixelFormat = Preferences.MainPixelFormat
+        descriptor.depthAttachmentPixelFormat = Preferences.MainDepthPixelFormat
+        
+        descriptor.vertexFunction = ShaderLibrary.getVertexFunction(.Instanced)
         descriptor.fragmentFunction = ShaderLibrary.getFragmentFunction(.Basic)
         
         descriptor.vertexDescriptor = VertexDescriptorLibrary.getVertexDescriptor(.Basic)

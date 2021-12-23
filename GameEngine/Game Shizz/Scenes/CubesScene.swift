@@ -2,28 +2,24 @@ import MetalKit
 
 class CubesScene: Scene {
     
+    var cubeCollection = CubeCollection(cubeWide: 12, cubeHeight: 12, cubeBack: 12)
     let debugCamera = DebugCamera()
     
     override func buildScene() {
         addCamera(camera: debugCamera)
         
-        debugCamera.position.z = 13
+        debugCamera.position.z = 50
         
         addCubes()
     }
     
     private func addCubes() {
-        for y in -5..<5 {
-            let posY = Float(y) + 0.5
-            for x in -8..<8 {
-                let posX = Float(x) + 0.5
-                let cube = Cube()
-                cube.position.y = Float(posY)
-                cube.position.x = Float(posX)
-                cube.scale = float3(0.3)
-                cube.setColor(color: ColorUtils.randomColor())
-                addChild(cube)
-            }
-        }
+        addChild(cubeCollection)
+    }
+    
+    override func update(deltaTime: Float) {
+        cubeCollection.rotation.z += deltaTime
+        cubeCollection.rotation.y -= deltaTime / 2
+        super.update(deltaTime: deltaTime)
     }
 }

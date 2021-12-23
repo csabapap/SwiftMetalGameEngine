@@ -2,6 +2,7 @@ import MetalKit
 
 enum RenderPipelineStateType {
     case Basic
+    case Instanced
 }
 
 class RenderPipelineStateLibrary {
@@ -18,6 +19,7 @@ class RenderPipelineStateLibrary {
  
     private static func createDefaultRenderPipelineState() {
         renderPipelines.updateValue(BasicRenderPipelineState(), forKey: .Basic)
+        renderPipelines.updateValue(InstancedRenderPipelineState(), forKey: .Instanced)
     }
 }
 
@@ -32,6 +34,18 @@ struct BasicRenderPipelineState: RenderPipelineState {
     init() {
         do {
             pipelineState = try Engine.device.makeRenderPipelineState(descriptor: RenderPipelineDescriptorLibrary.getRenderPipelineDescriptor(.Basic))
+        } catch let error as NSError {
+            print("ERROR::CREATE::RENDER_PIPELINE_STATE::__\(name)__::\(error)")
+        }
+    }
+}
+
+struct InstancedRenderPipelineState: RenderPipelineState {
+    var name: String = "Basic Render Pipeline State"
+    var pipelineState: MTLRenderPipelineState!
+    init() {
+        do {
+            pipelineState = try Engine.device.makeRenderPipelineState(descriptor: RenderPipelineDescriptorLibrary.getRenderPipelineDescriptor(.Instanced))
         } catch let error as NSError {
             print("ERROR::CREATE::RENDER_PIPELINE_STATE::__\(name)__::\(error)")
         }
