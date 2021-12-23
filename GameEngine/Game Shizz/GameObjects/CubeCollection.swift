@@ -14,7 +14,7 @@ class CubeCollection: InstancedGameObject {
         self.cubeBack = cubeBack
         super.init(meshType: .CubeCustom, instanceCount: cubeWide * cubeHeight * cubeBack)
         
-        print("CUBE COUNT: \(cubeWide * cubeHeight * cubeBack)")
+        self.name = "Cube Collection"
         
         setColor(color: ColorUtils.randomColor())
     }

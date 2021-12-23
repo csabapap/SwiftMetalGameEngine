@@ -16,6 +16,7 @@ class InstancedGameObject: Node {
         mesh.setInstanceCount(instanceCount)
         self.generateInstances(instanceCount: instanceCount)
         self.createBuffers(instanceCount: instanceCount)
+        self.name = "Instanced Game Object"
     }
     
     func generateInstances(instanceCount: Int) {
