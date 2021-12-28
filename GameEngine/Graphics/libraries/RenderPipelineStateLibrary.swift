@@ -5,21 +5,17 @@ enum RenderPipelineStateType {
     case Instanced
 }
 
-class RenderPipelineStateLibrary {
+class RenderPipelineStateLibrary: Library<RenderPipelineStateType, MTLRenderPipelineState> {
     
-    private static var renderPipelines: [RenderPipelineStateType: RenderPipelineState] = [:]
+    private var renderPipelines: [RenderPipelineStateType: RenderPipelineState] = [:]
     
-    static func initialize() {
-        createDefaultRenderPipelineState()
-    }
-    
-    static func getRenderPipelineState(_ type: RenderPipelineStateType) -> MTLRenderPipelineState {
-        return renderPipelines[type]!.pipelineState
-    }
- 
-    private static func createDefaultRenderPipelineState() {
+    override func fillLibrary() {
         renderPipelines.updateValue(BasicRenderPipelineState(), forKey: .Basic)
         renderPipelines.updateValue(InstancedRenderPipelineState(), forKey: .Instanced)
+    }
+    
+    override subscript(type: RenderPipelineStateType) -> MTLRenderPipelineState? {
+        return renderPipelines[type]?.pipelineState
     }
 }
 
@@ -33,7 +29,7 @@ struct BasicRenderPipelineState: RenderPipelineState {
     var pipelineState: MTLRenderPipelineState!
     init() {
         do {
-            pipelineState = try Engine.device.makeRenderPipelineState(descriptor: RenderPipelineDescriptorLibrary.getRenderPipelineDescriptor(.Basic))
+            pipelineState = try Engine.device.makeRenderPipelineState(descriptor: Graphics.RenderPipelineDescriptors[.Basic]!)
         } catch let error as NSError {
             print("ERROR::CREATE::RENDER_PIPELINE_STATE::__\(name)__::\(error)")
         }
@@ -45,7 +41,7 @@ struct InstancedRenderPipelineState: RenderPipelineState {
     var pipelineState: MTLRenderPipelineState!
     init() {
         do {
-            pipelineState = try Engine.device.makeRenderPipelineState(descriptor: RenderPipelineDescriptorLibrary.getRenderPipelineDescriptor(.Instanced))
+            pipelineState = try Engine.device.makeRenderPipelineState(descriptor: Graphics.RenderPipelineDescriptors[.Instanced]!)
         } catch let error as NSError {
             print("ERROR::CREATE::RENDER_PIPELINE_STATE::__\(name)__::\(error)")
         }

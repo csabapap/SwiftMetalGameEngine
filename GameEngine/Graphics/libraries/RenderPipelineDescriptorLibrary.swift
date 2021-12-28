@@ -5,21 +5,17 @@ enum RenderPipelineDescriptorType {
     case Instanced
 }
 
-class RenderPipelineDescriptorLibrary {
+class RenderPipelineDescriptorLibrary: Library<RenderPipelineDescriptorType, MTLRenderPipelineDescriptor> {
     
-    private static var renderPipelineDescriptors: [RenderPipelineDescriptorType: RenderPipelineDescriptor] = [:]
+    private var renderPipelineDescriptors: [RenderPipelineDescriptorType: RenderPipelineDescriptor] = [:]
     
-    static func initialize() {
-        createDefaultRenderPipelineDescriptor()
-    }
-    
-    private static func createDefaultRenderPipelineDescriptor() {
+    override func fillLibrary() {
         renderPipelineDescriptors.updateValue(BasicRenderPipelineDescriptor(), forKey: .Basic)
         renderPipelineDescriptors.updateValue(InstancedRenderPipelineDescriptor(), forKey: .Instanced)
     }
     
-    static func getRenderPipelineDescriptor(_ type: RenderPipelineDescriptorType) -> MTLRenderPipelineDescriptor {
-        return renderPipelineDescriptors[type]!.descriptor
+    override subscript(type: RenderPipelineDescriptorType) -> MTLRenderPipelineDescriptor? {
+        return renderPipelineDescriptors[type]?.descriptor
     }
 }
 
@@ -37,10 +33,10 @@ struct BasicRenderPipelineDescriptor: RenderPipelineDescriptor {
         descriptor.colorAttachments[0].pixelFormat = Preferences.MainPixelFormat
         descriptor.depthAttachmentPixelFormat = Preferences.MainDepthPixelFormat
         
-        descriptor.vertexFunction = ShaderLibrary.getVertexFunction(.Basic)
-        descriptor.fragmentFunction = ShaderLibrary.getFragmentFunction(.Basic)
+        descriptor.vertexFunction = Graphics.VertexShaders[.Basic]
+        descriptor.fragmentFunction = Graphics.FragmentShaders[.Basic]
         
-        descriptor.vertexDescriptor = VertexDescriptorLibrary.getVertexDescriptor(.Basic)
+        descriptor.vertexDescriptor = Graphics.VertexDescriptors[.Basic]
     }
 }
 
@@ -53,9 +49,9 @@ struct InstancedRenderPipelineDescriptor: RenderPipelineDescriptor {
         descriptor.colorAttachments[0].pixelFormat = Preferences.MainPixelFormat
         descriptor.depthAttachmentPixelFormat = Preferences.MainDepthPixelFormat
         
-        descriptor.vertexFunction = ShaderLibrary.getVertexFunction(.Instanced)
-        descriptor.fragmentFunction = ShaderLibrary.getFragmentFunction(.Basic)
+        descriptor.vertexFunction = Graphics.VertexShaders[.Instanced]
+        descriptor.fragmentFunction = Graphics.FragmentShaders[.Basic]
         
-        descriptor.vertexDescriptor = VertexDescriptorLibrary.getVertexDescriptor(.Basic)
+        descriptor.vertexDescriptor = Graphics.VertexDescriptors[.Basic]
     }
 }

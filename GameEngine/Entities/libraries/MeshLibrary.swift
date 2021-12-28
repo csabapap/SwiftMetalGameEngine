@@ -6,21 +6,17 @@ enum MeshType {
     case CubeCustom
 }
 
-class MeshLibrary {
-    private static var meshes: [MeshType: Mesh] = [:]
+class MeshLibrary: Library<MeshType, Mesh> {
+    private var meshes: [MeshType: Mesh] = [:]
     
-    static func initialize () {
-        createDefaultMesh()
-    }
-    
-    private static func createDefaultMesh() {
+    override func fillLibrary() {
         meshes.updateValue(TriangleCustomMesh(), forKey: .TriangleCustom)
         meshes.updateValue(QuadCustomMesh(), forKey: .QuadCustom)
         meshes.updateValue(CubeCustomMesh(), forKey: .CubeCustom)
     }
-    
-    static func getMesh(_ meshType: MeshType) -> Mesh {
-        return meshes[meshType]!
+
+    override subscript(type: MeshType) -> Mesh? {
+        return meshes[type]
     }
 }
 
