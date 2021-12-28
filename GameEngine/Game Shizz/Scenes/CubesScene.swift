@@ -8,7 +8,7 @@ class CubesScene: Scene {
     override func buildScene() {
         addCamera(camera: debugCamera)
         
-        debugCamera.position.z = 50
+        debugCamera.setPositionZ(50)
         
         addCubes()
     }
@@ -17,9 +17,8 @@ class CubesScene: Scene {
         addChild(cubeCollection)
     }
     
-    override func update(deltaTime: Float) {
-        cubeCollection.rotation.z += deltaTime
-        cubeCollection.rotation.y -= deltaTime / 2
-        super.update(deltaTime: deltaTime)
+    override func doUpdate() {
+        cubeCollection.setRotationZ(GameTime.DeltaTime)
+        cubeCollection.setRotationY(GameTime.DeltaTime / 2)
     }
 }

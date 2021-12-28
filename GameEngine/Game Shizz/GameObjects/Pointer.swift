@@ -14,9 +14,8 @@ class Pointer: GameObject {
         print("rotation intensity: \(rotationIntensity)")
     }
     
-    override func update(deltaTime: Float) {
+    override func doUpdate() {
 //        rotation.z += rotationIntensity
-        self.rotation.z = -atan2f(Mouse.GetMouseViewportPosition().x - position.x + camera.position.x, Mouse.GetMouseViewportPosition().y - position.y + camera.position.y)
-        super.update(deltaTime: deltaTime)
+        self.setRotationZ(-atan2f(Mouse.GetMouseViewportPosition().x - getPositionX() + camera.getPositionX(), Mouse.GetMouseViewportPosition().y - getPositionY() + camera.getPositionY()))
     }
 }

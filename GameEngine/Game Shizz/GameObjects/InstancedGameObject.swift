@@ -16,7 +16,7 @@ class InstancedGameObject: Node {
         mesh.setInstanceCount(instanceCount)
         self.generateInstances(instanceCount: instanceCount)
         self.createBuffers(instanceCount: instanceCount)
-        self.name = "Instanced Game Object"
+        setName("Instanced Game Object")
     }
     
     func generateInstances(instanceCount: Int) {
@@ -39,11 +39,11 @@ class InstancedGameObject: Node {
         }
     }
     
-    override func update(deltaTime: Float) {
+    override func update() {
         
         updateModelConstantsBuffer()
         
-        super.update(deltaTime: deltaTime)
+        super.update()
     }
 }
 

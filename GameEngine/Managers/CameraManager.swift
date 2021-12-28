@@ -13,7 +13,7 @@ class CameraManager {
     
     internal func update(deltaTime: Float) {
         for camera in cameras.values {
-            camera.update(deltaTime: deltaTime)
+            camera.update()
         }
     }
 }

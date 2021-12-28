@@ -1,11 +1,13 @@
+import simd
 class Cube: GameObject {
+    
     init() {
         super.init(meshType: .CubeCustom)
+        setName("cube")
     }
     
-    override func update(deltaTime: Float) {
-        rotation.x += Float.randomZeroToOne * deltaTime
-        rotation.y += Float.randomZeroToOne * deltaTime
-        super.update(deltaTime: deltaTime)
+    override func doUpdate() {
+        rotateX(GameTime.DeltaTime)
+        rotateY(GameTime.DeltaTime)
     }
 }
