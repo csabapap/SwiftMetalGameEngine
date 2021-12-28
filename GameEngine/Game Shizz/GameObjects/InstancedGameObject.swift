@@ -1,71 +1,65 @@
 import MetalKit
 
 class InstancedGameObject: Node {
-    
-    private var mesh: Mesh!
+    private var _mesh: Mesh!
     
     var material = Material()
     
-    internal var nodes: [Node] = []
-    
-    private var modelConstantsBuffer: MTLBuffer!
+    internal var _nodes: [Node] = []
+    private var _modelConstantBuffer: MTLBuffer!
     
     init(meshType: MeshType, instanceCount: Int) {
-        super.init()
-        mesh = Entities.Meshes[meshType]
-        mesh.setInstanceCount(instanceCount)
-        self.generateInstances(instanceCount: instanceCount)
-        self.createBuffers(instanceCount: instanceCount)
-        setName("Instanced Game Object")
+        super.init(name: "Instanced Game Object")
+        self._mesh = Entities.Meshes[meshType]
+        self._mesh.setInstanceCount(instanceCount)
+        self.generateInstances(instanceCount)
+        self.createBuffers(instanceCount)
     }
     
-    func generateInstances(instanceCount: Int) {
+    func generateInstances(_ instanceCount: Int){
         for _ in 0..<instanceCount {
-            let node = Node()
-            nodes.append(node)
+            _nodes.append(Node())
         }
     }
     
-    func createBuffers(instanceCount: Int) {
-        modelConstantsBuffer = Engine.device.makeBuffer(length: ModelConstants.stride(instanceCount), options: [])
+    func createBuffers(_ instanceCount: Int) {
+        _modelConstantBuffer = Engine.device.makeBuffer(length: ModelConstants.stride(instanceCount), options: [])
     }
     
     private func updateModelConstantsBuffer() {
-        var pointer = modelConstantsBuffer.contents().bindMemory(to: ModelConstants.self, capacity: nodes.count)
-        
-        for node in nodes {
+        var pointer = _modelConstantBuffer.contents().bindMemory(to: ModelConstants.self, capacity: _nodes.count)
+        for node in _nodes {
             pointer.pointee.modelMatrix = matrix_multiply(self.modelMatrix, node.modelMatrix)
             pointer = pointer.advanced(by: 1)
         }
     }
-    
+
     override func update() {
-        
         updateModelConstantsBuffer()
-        
         super.update()
     }
 }
 
 extension InstancedGameObject: Renderable {
     func doRender(renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic]!)
+        renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Instanced])
         renderCommandEncoder.setDepthStencilState(Graphics.DepthStencilStates[.Less])
         
-        // vertext buffers
+        //Vertex Shader
+        renderCommandEncoder.setVertexBuffer(_modelConstantBuffer, offset: 0, index: 2)
         
-        renderCommandEncoder.setVertexBuffer(modelConstantsBuffer, offset: 0, index: 2)
-        
-        // fragment buffers
+        //Fragment Shader
         renderCommandEncoder.setFragmentBytes(&material, length: Material.stride, index: 1)
         
-        mesh.drawPrimitives(renderCommandEncoder)
+        _mesh.drawPrimitives(renderCommandEncoder)
     }
 }
 
+//Material Properties
 extension InstancedGameObject {
-    func setColor(color: float4) {
-        material.color = color
-        material.isActive = true
+    public func setColor(_ color: float4){
+        self.material.color = color
+        self.material.useMaterialColor = true
     }
 }
+

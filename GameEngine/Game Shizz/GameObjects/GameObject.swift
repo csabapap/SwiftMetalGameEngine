@@ -25,7 +25,7 @@ class GameObject: Node {
 
 extension GameObject: Renderable {
     func doRender(renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic]!)
+        renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
         renderCommandEncoder.setDepthStencilState(Graphics.DepthStencilStates[.Less])
         
         // vertext buffers
@@ -41,6 +41,6 @@ extension GameObject: Renderable {
 extension GameObject {
     func setColor(color: float4) {
         material.color = color
-        material.isActive = true
+        material.useMaterialColor = true
     }
 }

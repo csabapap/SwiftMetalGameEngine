@@ -18,7 +18,7 @@ class CubesScene: Scene {
     }
     
     override func doUpdate() {
-        cubeCollection.setRotationZ(GameTime.DeltaTime)
-        cubeCollection.setRotationY(GameTime.DeltaTime / 2)
+        cubeCollection.rotateZ(GameTime.DeltaTime)
+        cubeCollection.rotateY(GameTime.DeltaTime / 2)
     }
 }

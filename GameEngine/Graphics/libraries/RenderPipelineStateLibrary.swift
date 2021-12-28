@@ -14,8 +14,8 @@ class RenderPipelineStateLibrary: Library<RenderPipelineStateType, MTLRenderPipe
         renderPipelines.updateValue(InstancedRenderPipelineState(), forKey: .Instanced)
     }
     
-    override subscript(type: RenderPipelineStateType) -> MTLRenderPipelineState? {
-        return renderPipelines[type]?.pipelineState
+    override subscript(type: RenderPipelineStateType) -> MTLRenderPipelineState {
+        return renderPipelines[type]!.pipelineState
     }
 }
 
