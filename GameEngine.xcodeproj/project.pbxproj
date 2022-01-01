@@ -51,6 +51,7 @@
 		E8F0F030277B644E00B86738 /* FragmentShaderLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F02F277B644E00B86738 /* FragmentShaderLibrary.swift */; };
 		E8F0F033277B6AF800B86738 /* Shared.metal in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F032277B6AF800B86738 /* Shared.metal */; };
 		E8F0F035277B6B7900B86738 /* InstancesShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F034277B6B7900B86738 /* InstancesShaders.metal */; };
+		E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F0F0392780E71A00B86738 /* PartyPirateParot.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		E8F0F02F277B644E00B86738 /* FragmentShaderLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FragmentShaderLibrary.swift; sourceTree = "<group>"; };
 		E8F0F032277B6AF800B86738 /* Shared.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shared.metal; sourceTree = "<group>"; };
 		E8F0F034277B6B7900B86738 /* InstancesShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = InstancesShaders.metal; sourceTree = "<group>"; };
+		E8F0F0392780E71A00B86738 /* PartyPirateParot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartyPirateParot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,8 +138,6 @@
 				E8F0F02B277B637D00B86738 /* Graphics */,
 				A6A5C6E6275690DA00FE9802 /* Core */,
 				E8F0F022277B611900B86738 /* Entities */,
-				E8C59461276A1D4A00B9B48C /* Utils */,
-				A6B6AA26275BADB2006BAD63 /* Maths */,
 				A699E25E275933BA00330912 /* Game Shizz */,
 				A6A5C6E5275690C500FE9802 /* Display */,
 				A6B6AA32275CF98B006BAD63 /* Managers */,
@@ -191,8 +191,11 @@
 		A6A5C6E6275690DA00FE9802 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A6FE64442761EC140087470C /* input */,
+				A6B6AA26275BADB2006BAD63 /* maths */,
+				E8F0F0362780E63E00B86738 /* res */,
 				E8F0F026277B624100B86738 /* types */,
-				A6FE64442761EC140087470C /* Input */,
+				E8C59461276A1D4A00B9B48C /* utils */,
 				A6A5C6EA275692B900FE9802 /* Engine.swift */,
 				A6A5C6ED2756936500FE9802 /* Preferences.swift */,
 				E8F0F01F277B4F3300B86738 /* GameTime.swift */,
@@ -200,12 +203,12 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		A6B6AA26275BADB2006BAD63 /* Maths */ = {
+		A6B6AA26275BADB2006BAD63 /* maths */ = {
 			isa = PBXGroup;
 			children = (
 				A6B6AA27275BADC6006BAD63 /* Math.swift */,
 			);
-			path = Maths;
+			path = maths;
 			sourceTree = "<group>";
 		};
 		A6B6AA2B275CF758006BAD63 /* Scenes */ = {
@@ -227,14 +230,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		A6FE64442761EC140087470C /* Input */ = {
+		A6FE64442761EC140087470C /* input */ = {
 			isa = PBXGroup;
 			children = (
 				A6FE64452761EC2B0087470C /* Keyboard.swift */,
 				A6FE64482761ECA30087470C /* KeyCodes.swift */,
 				A6FE644B276364D00087470C /* Mouse.swift */,
 			);
-			path = Input;
+			path = input;
 			sourceTree = "<group>";
 		};
 		E8C5945A27677C5400B9B48C /* GameObjects */ = {
@@ -250,12 +253,12 @@
 			path = GameObjects;
 			sourceTree = "<group>";
 		};
-		E8C59461276A1D4A00B9B48C /* Utils */ = {
+		E8C59461276A1D4A00B9B48C /* utils */ = {
 			isa = PBXGroup;
 			children = (
 				E8961446276B8D9700D4447F /* ColorUtils.swift */,
 			);
-			path = Utils;
+			path = utils;
 			sourceTree = "<group>";
 		};
 		E8D74E122765050700F2F3C9 /* Cameras */ = {
@@ -327,6 +330,14 @@
 			path = shaders;
 			sourceTree = "<group>";
 		};
+		E8F0F0362780E63E00B86738 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				E8F0F0392780E71A00B86738 /* PartyPirateParot.png */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -385,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A626790A274CD23F0087FE51 /* Assets.xcassets in Resources */,
+				E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */,
 				A626790D274CD23F0087FE51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
