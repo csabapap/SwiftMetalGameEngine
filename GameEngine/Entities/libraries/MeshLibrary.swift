@@ -50,8 +50,9 @@ class CustomMesh: Mesh {
     
     
     func addVertex(position: float3,
-                   color: float4 = float4(1,0,1,1)) {
-        vertices.append(Vertex(position: position, color: color))
+                   color: float4 = float4(1,0,1,1),
+                   textureCoordinate: float2 = float2(0)) {
+        vertices.append(Vertex(position: position, color: color, textureCoordinates: textureCoordinate))
     }
     
     func setInstanceCount(_ count: Int) {
@@ -78,13 +79,13 @@ class TriangleCustomMesh: CustomMesh {
 
 class QuadCustomMesh: CustomMesh {
     override func createVertices() {
-        addVertex(position: float3(1, 1, 0), color: float4(1, 0, 0, 1))
-        addVertex(position: float3(-1, 1, 0), color: float4(0, 1, 0, 1))
-        addVertex(position: float3(-1, -1, 0), color: float4(0, 0, 1, 1))
+        addVertex(position: float3(1, 1, 0), color: float4(1, 0, 0, 1), textureCoordinate: float2(1, 0))
+        addVertex(position: float3(-1, 1, 0), color: float4(0, 1, 0, 1), textureCoordinate: float2(0, 0))
+        addVertex(position: float3(-1, -1, 0), color: float4(0, 0, 1, 1), textureCoordinate: float2(0, 1))
         
-        addVertex(position: float3(1, 1, 0), color: float4(1, 0, 0, 1))
-        addVertex(position: float3(-1, -1, 0), color: float4(0, 0, 1, 1))
-        addVertex(position: float3(1, -1, 0), color: float4(0, 1, 0, 1))
+        addVertex(position: float3(1, 1, 0), color: float4(1, 0, 0, 1), textureCoordinate: float2(1, 0))
+        addVertex(position: float3(-1, -1, 0), color: float4(0, 0, 1, 1), textureCoordinate: float2(0, 1))
+        addVertex(position: float3(1, -1, 0), color: float4(0, 1, 0, 1), textureCoordinate: float2(1, 1))
     }
 }
 

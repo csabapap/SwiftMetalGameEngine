@@ -17,5 +17,6 @@ vertex RasterizerData instanced_vertex_shader(const VertexIn vIn [[ stage_in ]],
     ModelConstants mc = modelConstants[instanceId];
     rd.position = sceneConstants.projectionMatrix * sceneConstants.viewMatrix * mc.modelMatrix * float4(vIn.position, 1);
     rd.color = vIn.color;
+    rd.textureCoordinates = vIn.textureCoordinates;
     return rd;
 }
