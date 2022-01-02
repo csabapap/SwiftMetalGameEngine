@@ -6,4 +6,8 @@ class Quad: GameObject {
         super.init(meshType: .QuadCustom)
         setName("Quad")
     }
+    
+    override func doUpdate() {
+        rotateX(GameTime.DeltaTime * 2)
+    }
 }

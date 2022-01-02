@@ -52,6 +52,8 @@
 		E8F0F033277B6AF800B86738 /* Shared.metal in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F032277B6AF800B86738 /* Shared.metal */; };
 		E8F0F035277B6B7900B86738 /* InstancesShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F034277B6B7900B86738 /* InstancesShaders.metal */; };
 		E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F0F0392780E71A00B86738 /* PartyPirateParot.png */; };
+		E8F0F03E2781B46A00B86738 /* TextureLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F03D2781B46A00B86738 /* TextureLibrary.swift */; };
+		E8F0F0402781BAD000B86738 /* SamplerStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F03F2781BAD000B86738 /* SamplerStateLibrary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		E8F0F032277B6AF800B86738 /* Shared.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shared.metal; sourceTree = "<group>"; };
 		E8F0F034277B6B7900B86738 /* InstancesShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = InstancesShaders.metal; sourceTree = "<group>"; };
 		E8F0F0392780E71A00B86738 /* PartyPirateParot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartyPirateParot.png; sourceTree = "<group>"; };
+		E8F0F03D2781B46A00B86738 /* TextureLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureLibrary.swift; sourceTree = "<group>"; };
+		E8F0F03F2781BAD000B86738 /* SamplerStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplerStateLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				A699E26627593B2A00330912 /* MeshLibrary.swift */,
+				E8F0F03D2781B46A00B86738 /* TextureLibrary.swift */,
 			);
 			path = libraries;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				A6EE15962756D12800FFF7CD /* RenderPipelineStateLibrary.swift */,
 				E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */,
 				E8F0F02F277B644E00B86738 /* FragmentShaderLibrary.swift */,
+				E8F0F03F2781BAD000B86738 /* SamplerStateLibrary.swift */,
 			);
 			path = libraries;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				E8F0F035277B6B7900B86738 /* InstancesShaders.metal in Sources */,
 				A6B6AA28275BADC6006BAD63 /* Math.swift in Sources */,
 				A6FE64462761EC2B0087470C /* Keyboard.swift in Sources */,
+				E8F0F03E2781B46A00B86738 /* TextureLibrary.swift in Sources */,
 				A6FE64492761ECA30087470C /* KeyCodes.swift in Sources */,
 				A699E260275933D900330912 /* GameObject.swift in Sources */,
 				A634FCC0275A5AE8002AD5A6 /* Node.swift in Sources */,
@@ -445,6 +452,7 @@
 				E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */,
 				A634FCBD275A5A29002AD5A6 /* Pointer.swift in Sources */,
 				E8F0F028277B625900B86738 /* Library.swift in Sources */,
+				E8F0F0402781BAD000B86738 /* SamplerStateLibrary.swift in Sources */,
 				A6B6AA30275CF891006BAD63 /* SandboxScene.swift in Sources */,
 				E8F0F02A277B629400B86738 /* Shader.swift in Sources */,
 				E8F0F020277B4F3300B86738 /* GameTime.swift in Sources */,
