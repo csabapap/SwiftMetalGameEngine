@@ -33,6 +33,10 @@
 		A6FE64462761EC2B0087470C /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE64452761EC2B0087470C /* Keyboard.swift */; };
 		A6FE64492761ECA30087470C /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE64482761ECA30087470C /* KeyCodes.swift */; };
 		A6FE644C276364D00087470C /* Mouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FE644B276364D00087470C /* Mouse.swift */; };
+		E870E069278255A9007137DB /* Cruiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E870E068278255A9007137DB /* Cruiser.swift */; };
+		E870E06D27825C83007137DB /* Character.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E870E06B27825C83007137DB /* Character.mtl */; };
+		E870E06E27825C83007137DB /* Character.obj in Resources */ = {isa = PBXBuildFile; fileRef = E870E06C27825C83007137DB /* Character.obj */; };
+		E870E07027825C97007137DB /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E870E06F27825C97007137DB /* Character.swift */; };
 		E87B54B12770DC6F00E0DA5A /* InstancedGameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */; };
 		E87B54B32771DEC600E0DA5A /* CubeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B22771DEC600E0DA5A /* CubeCollection.swift */; };
 		E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8961446276B8D9700D4447F /* ColorUtils.swift */; };
@@ -54,6 +58,9 @@
 		E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F0F0392780E71A00B86738 /* PartyPirateParot.png */; };
 		E8F0F03E2781B46A00B86738 /* TextureLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F03D2781B46A00B86738 /* TextureLibrary.swift */; };
 		E8F0F0402781BAD000B86738 /* SamplerStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F03F2781BAD000B86738 /* SamplerStateLibrary.swift */; };
+		E8F0F045278215C500B86738 /* cruiser.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8F0F042278215C500B86738 /* cruiser.obj */; };
+		E8F0F046278215C500B86738 /* cruiser.bmp in Resources */ = {isa = PBXBuildFile; fileRef = E8F0F043278215C500B86738 /* cruiser.bmp */; };
+		E8F0F047278215C500B86738 /* cruiser.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E8F0F044278215C500B86738 /* cruiser.mtl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +93,10 @@
 		A6FE64452761EC2B0087470C /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		A6FE64482761ECA30087470C /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		A6FE644B276364D00087470C /* Mouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mouse.swift; sourceTree = "<group>"; };
+		E870E068278255A9007137DB /* Cruiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cruiser.swift; sourceTree = "<group>"; };
+		E870E06B27825C83007137DB /* Character.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Character.mtl; sourceTree = "<group>"; };
+		E870E06C27825C83007137DB /* Character.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Character.obj; sourceTree = "<group>"; };
+		E870E06F27825C97007137DB /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstancedGameObject.swift; sourceTree = "<group>"; };
 		E87B54B22771DEC600E0DA5A /* CubeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeCollection.swift; sourceTree = "<group>"; };
 		E8961446276B8D9700D4447F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
@@ -107,6 +118,9 @@
 		E8F0F0392780E71A00B86738 /* PartyPirateParot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartyPirateParot.png; sourceTree = "<group>"; };
 		E8F0F03D2781B46A00B86738 /* TextureLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureLibrary.swift; sourceTree = "<group>"; };
 		E8F0F03F2781BAD000B86738 /* SamplerStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplerStateLibrary.swift; sourceTree = "<group>"; };
+		E8F0F042278215C500B86738 /* cruiser.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cruiser.obj; sourceTree = "<group>"; };
+		E8F0F043278215C500B86738 /* cruiser.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = cruiser.bmp; sourceTree = "<group>"; };
+		E8F0F044278215C500B86738 /* cruiser.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cruiser.mtl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +258,15 @@
 			path = input;
 			sourceTree = "<group>";
 		};
+		E870E06A27825C77007137DB /* character */ = {
+			isa = PBXGroup;
+			children = (
+				E870E06B27825C83007137DB /* Character.mtl */,
+				E870E06C27825C83007137DB /* Character.obj */,
+			);
+			path = character;
+			sourceTree = "<group>";
+		};
 		E8C5945A27677C5400B9B48C /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +276,8 @@
 				E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */,
 				E87B54B22771DEC600E0DA5A /* CubeCollection.swift */,
 				E8F0F01D277B025B00B86738 /* Quad.swift */,
+				E870E068278255A9007137DB /* Cruiser.swift */,
+				E870E06F27825C97007137DB /* Character.swift */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -339,9 +364,21 @@
 		E8F0F0362780E63E00B86738 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				E870E06A27825C77007137DB /* character */,
+				E8F0F041278215AB00B86738 /* cruiser */,
 				E8F0F0392780E71A00B86738 /* PartyPirateParot.png */,
 			);
 			path = res;
+			sourceTree = "<group>";
+		};
+		E8F0F041278215AB00B86738 /* cruiser */ = {
+			isa = PBXGroup;
+			children = (
+				E8F0F043278215C500B86738 /* cruiser.bmp */,
+				E8F0F044278215C500B86738 /* cruiser.mtl */,
+				E8F0F042278215C500B86738 /* cruiser.obj */,
+			);
+			path = cruiser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,8 +439,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A626790A274CD23F0087FE51 /* Assets.xcassets in Resources */,
+				E8F0F045278215C500B86738 /* cruiser.obj in Resources */,
+				E870E06D27825C83007137DB /* Character.mtl in Resources */,
+				E870E06E27825C83007137DB /* Character.obj in Resources */,
 				E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */,
 				A626790D274CD23F0087FE51 /* Main.storyboard in Resources */,
+				E8F0F046278215C500B86738 /* cruiser.bmp in Resources */,
+				E8F0F047278215C500B86738 /* cruiser.mtl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +467,7 @@
 				A6A5C6EE2756936500FE9802 /* Preferences.swift in Sources */,
 				A699E26727593B2A00330912 /* MeshLibrary.swift in Sources */,
 				E8D74E1827652A1A00F2F3C9 /* CameraManager.swift in Sources */,
+				E870E07027825C97007137DB /* Character.swift in Sources */,
 				A6FE644C276364D00087470C /* Mouse.swift in Sources */,
 				E8D74E162765060F00F2F3C9 /* DebugCamera.swift in Sources */,
 				A6A5C6F1275695AB00FE9802 /* VertexShaderLibrary.swift in Sources */,
@@ -451,6 +494,7 @@
 				E8D74E142765052A00F2F3C9 /* Camera.swift in Sources */,
 				E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */,
 				A634FCBD275A5A29002AD5A6 /* Pointer.swift in Sources */,
+				E870E069278255A9007137DB /* Cruiser.swift in Sources */,
 				E8F0F028277B625900B86738 /* Library.swift in Sources */,
 				E8F0F0402781BAD000B86738 /* SamplerStateLibrary.swift in Sources */,
 				A6B6AA30275CF891006BAD63 /* SandboxScene.swift in Sources */,

@@ -4,6 +4,8 @@ enum MeshType {
     case TriangleCustom
     case QuadCustom
     case CubeCustom
+    case Cruiser
+    case Character
 }
 
 class MeshLibrary: Library<MeshType, Mesh> {
@@ -13,6 +15,8 @@ class MeshLibrary: Library<MeshType, Mesh> {
         meshes.updateValue(TriangleCustomMesh(), forKey: .TriangleCustom)
         meshes.updateValue(QuadCustomMesh(), forKey: .QuadCustom)
         meshes.updateValue(CubeCustomMesh(), forKey: .CubeCustom)
+        meshes.updateValue(ModelMesh(modelName: "cruiser"), forKey: .Cruiser)
+        meshes.updateValue(ModelMesh(modelName: "Character"), forKey: .Character)
     }
 
     override subscript(type: MeshType) -> Mesh? {
@@ -21,10 +25,61 @@ class MeshLibrary: Library<MeshType, Mesh> {
 }
 
 protocol Mesh {
-    var vertexBuffer: MTLBuffer! { get }
-    var vertexCount: Int! { get }
     func setInstanceCount(_ count: Int)
     func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder)
+}
+
+class ModelMesh: Mesh {
+    
+    private var meshes: [Any]!
+    private var instanceCount: Int = 1
+    
+    init(modelName: String) {
+        loadModel(modelName: modelName)
+    }
+    
+    func loadModel(modelName: String) {
+        guard let assetUrl = Bundle.main.url(forResource: modelName, withExtension: "obj") else {
+            fatalError("Asset \(modelName) does not exist")
+        }
+        
+        let descriptor = MTKModelIOVertexDescriptorFromMetal(Graphics.VertexDescriptors[.Basic])
+        (descriptor.attributes[0] as! MDLVertexAttribute).name = MDLVertexAttributePosition
+        (descriptor.attributes[1] as! MDLVertexAttribute).name = MDLVertexAttributeColor
+        (descriptor.attributes[2] as! MDLVertexAttribute).name = MDLVertexAttributeTextureCoordinate
+        
+        let bufferAllocator = MTKMeshBufferAllocator(device: Engine.device)
+        let asset: MDLAsset = MDLAsset(url: assetUrl,
+                                       vertexDescriptor: descriptor,
+                                       bufferAllocator: bufferAllocator)
+        do {
+            self.meshes = try MTKMesh.newMeshes(asset: asset, device: Engine.device).metalKitMeshes
+        } catch let error as NSError {
+            print("ERROR::LOADING_MESH::__\(modelName)__::\(error)")
+        }
+    }
+ 
+    func setInstanceCount(_ count: Int) {
+        instanceCount = count
+    }
+    
+    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        guard let mtkMeshes = self.meshes as? [MTKMesh] else { return }
+        
+        for mesh in mtkMeshes {
+            for vertexBuffer in mesh.vertexBuffers {
+                renderCommandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, index: 0)
+                for submesh in mesh.submeshes {
+                    renderCommandEncoder.drawIndexedPrimitives(type: .triangle,
+                                                               indexCount: submesh.indexCount,
+                                                               indexType: submesh.indexType,
+                                                               indexBuffer: submesh.indexBuffer.buffer,
+                                                               indexBufferOffset: submesh.indexBuffer.offset,
+                                                               instanceCount: instanceCount)
+                }
+            }
+        }
+    }
 }
 
 class CustomMesh: Mesh {
