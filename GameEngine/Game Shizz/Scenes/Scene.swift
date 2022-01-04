@@ -2,8 +2,9 @@ import MetalKit
 
 class Scene: Node {
     
-    var cameraManager = CameraManager()
-    var sceneConstants = SceneConstants()
+    private var cameraManager = CameraManager()
+    private var lightManager = LightManager()
+    private var sceneConstants = SceneConstants()
     
     init() {
         super.init(name: "Scene")
@@ -17,6 +18,11 @@ class Scene: Node {
         if (isCurrentCamera) {
             cameraManager.setCamera(camera.cameraType)
         }
+    }
+    
+    func addLight(lightObject: LightObject) {
+        self.addChild(lightObject)
+        lightManager.addLightObject(lightObject)
     }
     
     func updateSceneConstants() {
@@ -36,6 +42,7 @@ class Scene: Node {
     
     override func render(renderCommandEncoder: MTLRenderCommandEncoder) {
         renderCommandEncoder.setVertexBytes(&sceneConstants, length: SceneConstants.stride, index: 1)
+        lightManager.setLightData(renderCommandEncoder)
         super.render(renderCommandEncoder: renderCommandEncoder)
     }
 }

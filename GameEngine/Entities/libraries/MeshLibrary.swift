@@ -4,8 +4,11 @@ enum MeshType {
     case TriangleCustom
     case QuadCustom
     case CubeCustom
+    
+    case None
     case Cruiser
     case Character
+    case Sphere
 }
 
 class MeshLibrary: Library<MeshType, Mesh> {
@@ -15,8 +18,10 @@ class MeshLibrary: Library<MeshType, Mesh> {
         meshes.updateValue(TriangleCustomMesh(), forKey: .TriangleCustom)
         meshes.updateValue(QuadCustomMesh(), forKey: .QuadCustom)
         meshes.updateValue(CubeCustomMesh(), forKey: .CubeCustom)
+        meshes.updateValue(NoMesh(), forKey: .None)
         meshes.updateValue(ModelMesh(modelName: "cruiser"), forKey: .Cruiser)
         meshes.updateValue(ModelMesh(modelName: "Character"), forKey: .Character)
+        meshes.updateValue(ModelMesh(modelName: "sphere"), forKey: .Sphere)
     }
 
     override subscript(type: MeshType) -> Mesh? {
@@ -27,6 +32,11 @@ class MeshLibrary: Library<MeshType, Mesh> {
 protocol Mesh {
     func setInstanceCount(_ count: Int)
     func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder)
+}
+
+class NoMesh: Mesh {
+    func setInstanceCount(_ count: Int) { }
+    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) { }
 }
 
 class ModelMesh: Mesh {
