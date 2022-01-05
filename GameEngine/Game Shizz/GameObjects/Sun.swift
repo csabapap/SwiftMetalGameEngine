@@ -11,6 +11,7 @@ class Sun: LightObject {
     
     init() {
         super.init(meshType: .Sphere, name: "Sun")
-        setColor(color: float4(0.5, 0.5, 0, 1))
+        setMaterialColor(color: float4(0.5, 0.5, 0, 1))
+        setScale(0.1)
     }
 }

@@ -280,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				A699E25F275933D900330912 /* GameObject.swift */,
+				E870E07127837308007137DB /* LightObject.swift */,
 				A634FCBC275A5A29002AD5A6 /* Pointer.swift */,
 				E8C5945B27677C8900B9B48C /* Cube.swift */,
 				E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */,
@@ -287,7 +288,6 @@
 				E8F0F01D277B025B00B86738 /* Quad.swift */,
 				E870E068278255A9007137DB /* Cruiser.swift */,
 				E870E06F27825C97007137DB /* Character.swift */,
-				E870E07127837308007137DB /* LightObject.swift */,
 				E870E07527837838007137DB /* Sun.swift */,
 			);
 			path = GameObjects;

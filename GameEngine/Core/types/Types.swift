@@ -26,6 +26,7 @@ extension Float: sizeable {
     }
 }
 
+extension Int32: sizeable { }
 extension float2: sizeable { }
 extension float3: sizeable { }
 extension float4: sizeable { }
@@ -50,6 +51,9 @@ struct Material: sizeable {
     var color: float4
     var useMaterialColor: Bool
     var useTexture: Bool
+    var isLit: Bool = true
+    
+    var ambient: float3 = float3(0.3, 0.3, 0.3)
     
     init() {
         color = float4(0.9, 0.3, 0.4, 1.0)
@@ -60,4 +64,7 @@ struct Material: sizeable {
 
 struct LightData: sizeable {
     var position: float3 = float3(0,0,0)
+    var color: float3 = float3(1, 1, 1)
+    var brightness: Float = 1.0
+    var ambientIntensity: Float = 1.0
 }
