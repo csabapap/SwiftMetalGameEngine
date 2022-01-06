@@ -49,6 +49,9 @@ class SandboxScene: Scene {
         leftSun.setPositionX(sin(GameTime.TotalGameTime))
         leftSun.setPositionZ(cos(GameTime.TotalGameTime))
         
+        middleSun.setPositionY(sin(GameTime.TotalGameTime))
+        middleSun.setPositionZ(cos(GameTime.TotalGameTime))
+        
         rightSun.setPositionX(sin(GameTime.TotalGameTime) * -1)
         rightSun.setPositionZ(-cos(GameTime.TotalGameTime))
     }

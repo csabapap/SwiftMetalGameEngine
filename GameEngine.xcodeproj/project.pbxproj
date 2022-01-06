@@ -44,6 +44,8 @@
 		E87B54B12770DC6F00E0DA5A /* InstancedGameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */; };
 		E87B54B32771DEC600E0DA5A /* CubeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B22771DEC600E0DA5A /* CubeCollection.swift */; };
 		E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8961446276B8D9700D4447F /* ColorUtils.swift */; };
+		E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03227873EAD004EB927 /* Imperial.mtl */; };
+		E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03327873EAD004EB927 /* Imperial.obj */; };
 		E8C5945C27677C8900B9B48C /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945B27677C8900B9B48C /* Cube.swift */; };
 		E8C5945E2769102E00B9B48C /* DepthStencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */; };
 		E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C59465276B19EB00B9B48C /* CubesScene.swift */; };
@@ -108,6 +110,8 @@
 		E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstancedGameObject.swift; sourceTree = "<group>"; };
 		E87B54B22771DEC600E0DA5A /* CubeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeCollection.swift; sourceTree = "<group>"; };
 		E8961446276B8D9700D4447F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		E8ACC03227873EAD004EB927 /* Imperial.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.mtl; sourceTree = "<group>"; };
+		E8ACC03327873EAD004EB927 /* Imperial.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.obj; sourceTree = "<group>"; };
 		E8C5945B27677C8900B9B48C /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStencilStateLibrary.swift; sourceTree = "<group>"; };
 		E8C59465276B19EB00B9B48C /* CubesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesScene.swift; sourceTree = "<group>"; };
@@ -276,6 +280,15 @@
 			path = character;
 			sourceTree = "<group>";
 		};
+		E8ACC03127873E7A004EB927 /* imperial */ = {
+			isa = PBXGroup;
+			children = (
+				E8ACC03227873EAD004EB927 /* Imperial.mtl */,
+				E8ACC03327873EAD004EB927 /* Imperial.obj */,
+			);
+			path = imperial;
+			sourceTree = "<group>";
+		};
 		E8C5945A27677C5400B9B48C /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +388,7 @@
 		E8F0F0362780E63E00B86738 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				E8ACC03127873E7A004EB927 /* imperial */,
 				E870E06A27825C77007137DB /* character */,
 				E8F0F041278215AB00B86738 /* cruiser */,
 				E8F0F0392780E71A00B86738 /* PartyPirateParot.png */,
@@ -458,6 +472,8 @@
 				E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */,
 				A626790D274CD23F0087FE51 /* Main.storyboard in Resources */,
 				E8F0F046278215C500B86738 /* cruiser.bmp in Resources */,
+				E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */,
+				E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */,
 				E8F0F047278215C500B86738 /* cruiser.mtl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

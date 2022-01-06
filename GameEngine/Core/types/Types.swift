@@ -35,6 +35,7 @@ struct Vertex: sizeable {
     var position: float3
     var color: float4
     var textureCoordinates: float2
+    var normal: float3
 };
 
 struct ModelConstants: sizeable {
@@ -53,7 +54,8 @@ struct Material: sizeable {
     var useTexture: Bool
     var isLit: Bool = true
     
-    var ambient: float3 = float3(0.3, 0.3, 0.3)
+    var ambient: float3 = float3(0.01, 0.01, 0.01)
+    var diffuse: float3 = float3(1.0, 1.0, 1.0)
     
     init() {
         color = float4(0.9, 0.3, 0.4, 1.0)
@@ -67,4 +69,5 @@ struct LightData: sizeable {
     var color: float3 = float3(1, 1, 1)
     var brightness: Float = 1.0
     var ambientIntensity: Float = 1.0
+    var diffuseIntensity: Float = 1.0
 }
