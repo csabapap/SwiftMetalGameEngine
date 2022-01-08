@@ -9,6 +9,7 @@ enum MeshType {
     case Cruiser
     case Character
     case Sphere
+    case Imperial
 }
 
 class MeshLibrary: Library<MeshType, Mesh> {
@@ -22,6 +23,7 @@ class MeshLibrary: Library<MeshType, Mesh> {
         meshes.updateValue(ModelMesh(modelName: "cruiser"), forKey: .Cruiser)
         meshes.updateValue(ModelMesh(modelName: "Character"), forKey: .Character)
         meshes.updateValue(ModelMesh(modelName: "sphere"), forKey: .Sphere)
+        meshes.updateValue(ModelMesh(modelName: "Imperial"), forKey: .Imperial)
     }
 
     override subscript(type: MeshType) -> Mesh? {

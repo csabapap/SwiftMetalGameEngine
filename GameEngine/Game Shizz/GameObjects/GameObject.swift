@@ -72,6 +72,21 @@ extension GameObject {
         return material.ambient
     }
     
+    func setMaterialDiffuse(_ diffuse: float3) {
+        material.diffuse = diffuse
+        
+    }
+    func setMaterialDiffuse(_ diffuse: Float) {
+        material.diffuse = float3(diffuse, diffuse, diffuse)
+    }
+    func addMaterialDiffuse(_ value: Float) {
+        material.diffuse += value
+        
+    }
+    func getMaterialDiffuse() -> float3 {
+        return material.diffuse
+    }
+    
     func setMaterialIsLit(_ isLit: Bool) {
         material.isLit = isLit
     }

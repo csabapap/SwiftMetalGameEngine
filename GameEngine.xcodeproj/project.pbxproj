@@ -46,6 +46,8 @@
 		E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8961446276B8D9700D4447F /* ColorUtils.swift */; };
 		E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03227873EAD004EB927 /* Imperial.mtl */; };
 		E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03327873EAD004EB927 /* Imperial.obj */; };
+		E8ACC03727873FE2004EB927 /* ImperialSpaceShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */; };
+		E8ACC039278782A7004EB927 /* Imperial_Red.png in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC038278782A7004EB927 /* Imperial_Red.png */; };
 		E8C5945C27677C8900B9B48C /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945B27677C8900B9B48C /* Cube.swift */; };
 		E8C5945E2769102E00B9B48C /* DepthStencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */; };
 		E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C59465276B19EB00B9B48C /* CubesScene.swift */; };
@@ -112,6 +114,8 @@
 		E8961446276B8D9700D4447F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		E8ACC03227873EAD004EB927 /* Imperial.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.mtl; sourceTree = "<group>"; };
 		E8ACC03327873EAD004EB927 /* Imperial.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.obj; sourceTree = "<group>"; };
+		E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialSpaceShip.swift; sourceTree = "<group>"; };
+		E8ACC038278782A7004EB927 /* Imperial_Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Imperial_Red.png; sourceTree = "<group>"; };
 		E8C5945B27677C8900B9B48C /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStencilStateLibrary.swift; sourceTree = "<group>"; };
 		E8C59465276B19EB00B9B48C /* CubesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesScene.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 		E8ACC03127873E7A004EB927 /* imperial */ = {
 			isa = PBXGroup;
 			children = (
+				E8ACC038278782A7004EB927 /* Imperial_Red.png */,
 				E8ACC03227873EAD004EB927 /* Imperial.mtl */,
 				E8ACC03327873EAD004EB927 /* Imperial.obj */,
 			);
@@ -302,6 +307,7 @@
 				E870E068278255A9007137DB /* Cruiser.swift */,
 				E870E06F27825C97007137DB /* Character.swift */,
 				E870E07527837838007137DB /* Sun.swift */,
+				E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 				E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */,
 				A626790D274CD23F0087FE51 /* Main.storyboard in Resources */,
 				E8F0F046278215C500B86738 /* cruiser.bmp in Resources */,
+				E8ACC039278782A7004EB927 /* Imperial_Red.png in Resources */,
 				E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */,
 				E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */,
 				E8F0F047278215C500B86738 /* cruiser.mtl in Resources */,
@@ -502,6 +509,7 @@
 				A6FE644C276364D00087470C /* Mouse.swift in Sources */,
 				E8D74E162765060F00F2F3C9 /* DebugCamera.swift in Sources */,
 				A6A5C6F1275695AB00FE9802 /* VertexShaderLibrary.swift in Sources */,
+				E8ACC03727873FE2004EB927 /* ImperialSpaceShip.swift in Sources */,
 				A699E2642759354900330912 /* Renderer.swift in Sources */,
 				E8C5945C27677C8900B9B48C /* Cube.swift in Sources */,
 				E87B54B12770DC6F00E0DA5A /* InstancedGameObject.swift in Sources */,

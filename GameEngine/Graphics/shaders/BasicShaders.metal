@@ -21,7 +21,7 @@ vertex RasterizerData basic_vertex_shader(const VertexIn vIn [[ stage_in ]],
     rd.textureCoordinates = vIn.textureCoordinates;
     rd.gameTime = sceneConstants.gameTime;
     rd.worldPosition = worldPosition.xyz;
-    rd.surfaceNormal = (modelConstants.modelMatrix * float4(vIn.normal, 1.0)).xyz;
+    rd.surfaceNormal = (modelConstants.modelMatrix * float4(vIn.normal, 0.0)).xyz;
     return rd;
 }
 
@@ -58,7 +58,7 @@ fragment half4 basic_fragment_shader(RasterizerData rd [[ stage_in ]],
             float3 unitLightVector = normalize(lightData.position - rd.worldPosition); // worldPosition --> lightPosition
             
             float3 diffuseness = material.diffuse * lightData.diffuseIntensity;
-            float nDotL = max(dot(unitNormal, unitLightVector), 0.0);
+            float nDotL = max(dot(abs(unitNormal), unitLightVector), 0.0);
             float3 diffuseColor = clamp(diffuseness * nDotL * lightData.color * lightData.brightness, 0.0, 1.0);
             totalDiffuse += diffuseColor;
         }

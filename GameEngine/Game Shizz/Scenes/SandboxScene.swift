@@ -5,17 +5,19 @@ class SandboxScene: Scene {
     var debugCamera: Camera = DebugCamera()
     var cruiser: Cruiser = Cruiser()
     var character: Character = Character()
+    var imperial: ImperialSpaceShip = ImperialSpaceShip()
     
     var leftSun: Sun = Sun()
     var middleSun: Sun = Sun()
     var rightSun: Sun = Sun()
+    
+    var cameraDirection: Float = -1
     
     override func buildScene() {
         addCamera(camera: debugCamera)
         
         debugCamera.setPositionZ(6)
         
-
         leftSun.setMaterialColor(color: float4(0.5, 0.5, 0, 1))
         leftSun.setLightColor(color: float3(0.5, 0.5, 0))
         leftSun.setMaterialIsLit(false)
@@ -23,8 +25,9 @@ class SandboxScene: Scene {
         leftSun.setPositionX(-1)
         addLight(lightObject: leftSun)
         
-        middleSun.setMaterialColor(color: float4(0, 0.5, 0.5, 1))
-        middleSun.setLightColor(color: float3(0, 0.5, 0.5))
+        middleSun.setMaterialColor(color: float4(1, 1, 1, 1))
+        middleSun.setLightColor(color: float3(1, 1, 1))
+        middleSun.setAmbientBrightness(0.3)
         middleSun.setMaterialIsLit(false)
         middleSun.setPosition(float3(0, 1, 0))
         addLight(lightObject: middleSun)
@@ -35,9 +38,10 @@ class SandboxScene: Scene {
         rightSun.setPosition(float3(1, 1, 0))
         addLight(lightObject: rightSun)
         
-        
-        cruiser.setScale(0.5)
-        addChild(cruiser)
+        imperial.setRotationX(0.3)
+        imperial.setRotationY(0.3)
+        imperial.setMaterialAmbient(0.05)
+        addChild(imperial)
     }
     
     override func doUpdate() {
@@ -49,10 +53,18 @@ class SandboxScene: Scene {
         leftSun.setPositionX(sin(GameTime.TotalGameTime))
         leftSun.setPositionZ(cos(GameTime.TotalGameTime))
         
-        middleSun.setPositionY(sin(GameTime.TotalGameTime))
-        middleSun.setPositionZ(cos(GameTime.TotalGameTime))
+        middleSun.setPositionY(sin(GameTime.TotalGameTime) * 1.5)
+        middleSun.setPositionZ(cos(GameTime.TotalGameTime) * 1.5)
         
         rightSun.setPositionX(sin(GameTime.TotalGameTime) * -1)
         rightSun.setPositionZ(-cos(GameTime.TotalGameTime))
+        
+        
+        debugCamera.moveZ(GameTime.DeltaTime * cameraDirection / 2)
+        if (debugCamera.getPositionZ() < 3) {
+            cameraDirection = 1
+        } else if (debugCamera.getPositionZ() > 9) {
+            cameraDirection = -1
+        }
     }
 }

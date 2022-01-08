@@ -54,7 +54,7 @@ struct Material: sizeable {
     var useTexture: Bool
     var isLit: Bool = true
     
-    var ambient: float3 = float3(0.01, 0.01, 0.01)
+    var ambient: float3 = float3(0.1, 0.1, 0.1)
     var diffuse: float3 = float3(1.0, 1.0, 1.0)
     
     init() {
