@@ -16,6 +16,7 @@ struct RasterizerData{
     
     float3 worldPosition;
     float3 surfaceNormal;
+    float3 toCameraVector;
 };
 
 struct ModelConstants{
@@ -26,6 +27,7 @@ struct SceneConstants{
     float4x4 viewMatrix;
     float4x4 projectionMatrix;
     float gameTime;
+    float3 cameraPosition;
 };
 
 struct Material {
@@ -33,8 +35,11 @@ struct Material {
     bool useMaterialColor;
     bool useTexture;
     bool isLit;
+    
     float3 ambient;
     float3 diffuse;
+    float3 specular;
+    float shininess;
 };
 
 struct LightData {
@@ -43,4 +48,5 @@ struct LightData {
     float brightness;
     float ambientIntensity;
     float diffuseIntensity;
+    float specularIntensity;
 };

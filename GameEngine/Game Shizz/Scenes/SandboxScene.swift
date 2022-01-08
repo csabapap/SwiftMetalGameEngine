@@ -21,7 +21,7 @@ class SandboxScene: Scene {
         leftSun.setMaterialColor(color: float4(0.5, 0.5, 0, 1))
         leftSun.setLightColor(color: float3(0.5, 0.5, 0))
         leftSun.setMaterialIsLit(false)
-        leftSun.setPositionY(1)
+        leftSun.setPositionY(0.75)
         leftSun.setPositionX(-1)
         addLight(lightObject: leftSun)
         
@@ -29,13 +29,13 @@ class SandboxScene: Scene {
         middleSun.setLightColor(color: float3(1, 1, 1))
         middleSun.setAmbientBrightness(0.3)
         middleSun.setMaterialIsLit(false)
-        middleSun.setPosition(float3(0, 1, 0))
+        middleSun.setPosition(float3(0, 0.75, 0))
         addLight(lightObject: middleSun)
         
         rightSun.setMaterialColor(color: float4(0, 0, 1, 1))
         rightSun.setLightColor(color: float3(0, 0, 1))
         rightSun.setMaterialIsLit(false)
-        rightSun.setPosition(float3(1, 1, 0))
+        rightSun.setPosition(float3(1, 0.75, 0))
         addLight(lightObject: rightSun)
         
         imperial.setRotationX(0.3)
@@ -50,14 +50,11 @@ class SandboxScene: Scene {
             rotateY(Mouse.GetDX() * GameTime.DeltaTime)
         }
         
-        leftSun.setPositionX(sin(GameTime.TotalGameTime))
-        leftSun.setPositionZ(cos(GameTime.TotalGameTime))
+        leftSun.setPositionX(sin(GameTime.TotalGameTime) - 1)
         
-        middleSun.setPositionY(sin(GameTime.TotalGameTime) * 1.5)
-        middleSun.setPositionZ(cos(GameTime.TotalGameTime) * 1.5)
+        middleSun.setPositionX(sin(GameTime.TotalGameTime))
         
-        rightSun.setPositionX(sin(GameTime.TotalGameTime) * -1)
-        rightSun.setPositionZ(-cos(GameTime.TotalGameTime))
+        rightSun.setPositionX(sin(GameTime.TotalGameTime) + 1)
         
         
         debugCamera.moveZ(GameTime.DeltaTime * cameraDirection / 2)
@@ -66,5 +63,7 @@ class SandboxScene: Scene {
         } else if (debugCamera.getPositionZ() > 9) {
             cameraDirection = -1
         }
+        
+        imperial.setMaterialShininess(imperial.getMaterialShininess() + Mouse.GetDWheel())
     }
 }
