@@ -5,9 +5,9 @@ class Node {
     var _name: String
     var _id: String
     
-    private var _position: float3 = float3(0)
-    private var _scale: float3 =  float3(1)
-    private var _rotation: float3 = float3(0)
+    private var _position: float3 = float3(repeating: 0)
+    private var _scale: float3 =  float3(repeating: 1)
+    private var _rotation: float3 = float3(repeating: 0)
     
     var parentModelMatrix = matrix_identity_float4x4
     

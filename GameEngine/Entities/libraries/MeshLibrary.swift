@@ -119,7 +119,7 @@ class CustomMesh: Mesh {
     
     func addVertex(position: float3,
                    color: float4 = float4(1,0,1,1),
-                   textureCoordinate: float2 = float2(0),
+                   textureCoordinate: float2 = float2(repeating: 0),
                    normal: float3 = float3(0, 1, 0)
     ) {
         vertices.append(Vertex(
