@@ -7,6 +7,6 @@ class Quad: GameObject {
     }
     
     override func doUpdate() {
-        rotateX(GameTime.DeltaTime * 2)
+        
     }
 }

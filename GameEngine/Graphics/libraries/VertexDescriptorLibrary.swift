@@ -46,7 +46,7 @@ public struct BasicVertexDescriptor: VertexDescriptor {
         // normal
         descriptor.attributes[3].format = .float3
         descriptor.attributes[3].bufferIndex = 0
-        descriptor.attributes[3].offset = float3.size + float4.size + float2.size
+        descriptor.attributes[3].offset = float3.size + float4.size + float3.size
         
         descriptor.layouts[0].stride = Vertex.stride
     }

@@ -32,11 +32,11 @@ extension LightObject {
     }
     
     // Brightness
-    func setAmbientBrightness(_ brigtness: Float) {
+    func setLightBrightness(_ brigtness: Float) {
         lightData.brightness = brigtness
     }
     
-    func getAmbientBrightness() -> Float {
+    func getLightBrightness() -> Float {
         return lightData.brightness
     }
     

@@ -3,6 +3,7 @@ import MetalKit
 enum SceneType {
     case Sandbox
     case CubesScene
+    case PartyParotScene
 }
 
 class SceneManager {
@@ -18,6 +19,8 @@ class SceneManager {
             currentScene = SandboxScene()
         case .CubesScene:
             currentScene = CubesScene()
+        case .PartyParotScene:
+            currentScene = PartyParotScene()
         }
     }
     

@@ -27,7 +27,7 @@ class SandboxScene: Scene {
         
         middleSun.setMaterialColor(float4(1, 1, 1, 1))
         middleSun.setLightColor(color: float3(1, 1, 1))
-        middleSun.setAmbientBrightness(0.3)
+        middleSun.setLightBrightness(0.3)
         middleSun.setMaterialIsLit(false)
         middleSun.setPosition(float3(0, 0.75, 0))
         addLight(lightObject: middleSun)

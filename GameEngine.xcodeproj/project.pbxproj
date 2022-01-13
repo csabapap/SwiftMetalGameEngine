@@ -51,6 +51,7 @@
 		E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C59465276B19EB00B9B48C /* CubesScene.swift */; };
 		E8C9BE1827905B99008C95B9 /* ShaderLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9BE1727905B99008C95B9 /* ShaderLibrary.swift */; };
 		E8C9BE1A27906F2A008C95B9 /* Lighting.metal in Sources */ = {isa = PBXBuildFile; fileRef = E8C9BE1927906F2A008C95B9 /* Lighting.metal */; };
+		E8C9BE20279094BD008C95B9 /* PartyParotScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9BE1F279094BD008C95B9 /* PartyParotScene.swift */; };
 		E8D74E142765052A00F2F3C9 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D74E132765052A00F2F3C9 /* Camera.swift */; };
 		E8D74E162765060F00F2F3C9 /* DebugCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D74E152765060F00F2F3C9 /* DebugCamera.swift */; };
 		E8D74E1827652A1A00F2F3C9 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D74E1727652A1A00F2F3C9 /* CameraManager.swift */; };
@@ -117,6 +118,7 @@
 		E8C59465276B19EB00B9B48C /* CubesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesScene.swift; sourceTree = "<group>"; };
 		E8C9BE1727905B99008C95B9 /* ShaderLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderLibrary.swift; sourceTree = "<group>"; };
 		E8C9BE1927906F2A008C95B9 /* Lighting.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Lighting.metal; sourceTree = "<group>"; };
+		E8C9BE1F279094BD008C95B9 /* PartyParotScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyParotScene.swift; sourceTree = "<group>"; };
 		E8D74E132765052A00F2F3C9 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E8D74E152765060F00F2F3C9 /* DebugCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCamera.swift; sourceTree = "<group>"; };
 		E8D74E1727652A1A00F2F3C9 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				A6B6AA2C275CF770006BAD63 /* Scene.swift */,
 				A6B6AA2F275CF891006BAD63 /* SandboxScene.swift */,
 				E8C59465276B19EB00B9B48C /* CubesScene.swift */,
+				E8C9BE1F279094BD008C95B9 /* PartyParotScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				E8C9BE1827905B99008C95B9 /* ShaderLibrary.swift in Sources */,
 				E8F0F035277B6B7900B86738 /* InstancesShaders.metal in Sources */,
 				A6B6AA28275BADC6006BAD63 /* Math.swift in Sources */,
+				E8C9BE20279094BD008C95B9 /* PartyParotScene.swift in Sources */,
 				A6FE64462761EC2B0087470C /* Keyboard.swift in Sources */,
 				E8F0F03E2781B46A00B86738 /* TextureLibrary.swift in Sources */,
 				A6FE64492761ECA30087470C /* KeyCodes.swift in Sources */,
