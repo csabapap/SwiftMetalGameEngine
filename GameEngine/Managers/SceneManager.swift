@@ -2,6 +2,7 @@ import MetalKit
 
 enum SceneType {
     case Sandbox
+    case CubesScene
 }
 
 class SceneManager {
@@ -15,11 +16,15 @@ class SceneManager {
         switch sceneType {
         case .Sandbox:
             currentScene = SandboxScene()
+        case .CubesScene:
+            currentScene = CubesScene()
         }
     }
     
     static func tickScene(renderCommandEncoder: MTLRenderCommandEncoder, deltaTime: Float) {
-        currentScene.update(deltaTime: deltaTime)
+        GameTime.update(deltaTime: deltaTime)
+        currentScene.updateCameras(deltatTime: deltaTime)
+        currentScene.update()
         currentScene.render(renderCommandEncoder: renderCommandEncoder)
     }
 }
