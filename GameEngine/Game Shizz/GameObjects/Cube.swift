@@ -2,8 +2,7 @@ import simd
 class Cube: GameObject {
     
     init() {
-        super.init(meshType: .CubeCustom)
-        setName("cube")
+        super.init(meshType: .CubeCustom, name: "cube")
     }
     
     override func doUpdate() {

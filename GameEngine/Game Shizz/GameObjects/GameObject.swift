@@ -10,17 +10,14 @@ class GameObject: Node {
     
     var deltaPosition: Float = 0
     
-    init(meshType: MeshType) {
+    init(meshType: MeshType, name: String) {
         mesh = Entities.Meshes[meshType]
+        super.init(name: name)
     }
     
     override func update() {
-        updateModelConstants()
-        super.update()
-    }
-    
-    private func updateModelConstants() {
         modelConstants.modelMatrix = self.modelMatrix
+        super.update()
     }
 }
 
@@ -44,10 +41,14 @@ extension GameObject: Renderable {
 }
 
 extension GameObject {
-    func setMaterialColor(color: float4) {
+    func setMaterialColor(_ color: float4) {
         material.color = color
         material.useMaterialColor = true
         material.useTexture = false
+    }
+    
+    public func setMaterialColor(_ r: Float,_ g: Float,_ b: Float,_ a: Float) {
+        setMaterialColor(float4(r,g,b,a))
     }
     
     func setTexture(textureType: TextureTypes) {
@@ -56,66 +57,32 @@ extension GameObject {
         self.material.useMaterialColor = false
     }
     
-    func setMaterialAmbient(_ ambient: float3) {
-        material.ambient = ambient
-    }
+    // Is Lit
+    public func setMaterialIsLit(_ isLit: Bool) { self.material.isLit = isLit }
+    public func getMaterialIsLit()->Bool { return self.material.isLit }
     
-    func setMaterialAmbient(_ ambient: Float) {
-        material.ambient = float3(ambient, ambient, ambient)
-    }
+    // Ambient
+    public func setMaterialAmbient(_ ambient: float3) { self.material.ambient = ambient }
+    public func setMaterialAmbient(_ r: Float,_ g: Float,_ b: Float) { setMaterialAmbient(float3(r,g,b)) }
+    public func setMaterialAmbient(_ ambient: Float) { self.material.ambient = float3(ambient, ambient, ambient) }
+    public func addMaterialAmbient(_ value: Float) { self.material.ambient += value }
+    public func getMaterialAmbient()->float3 { return self.material.ambient }
     
-    func addMaterialAmbient(_ value: Float) {
-        material.ambient += value
-    }
-    
-    func getMaterialAmbient() -> float3 {
-        return material.ambient
-    }
-    
-    func setMaterialDiffuse(_ diffuse: float3) {
-        material.diffuse = diffuse
-        
-    }
-    func setMaterialDiffuse(_ diffuse: Float) {
-        material.diffuse = float3(diffuse, diffuse, diffuse)
-    }
-    func addMaterialDiffuse(_ value: Float) {
-        material.diffuse += value
-        
-    }
-    func getMaterialDiffuse() -> float3 {
-        return material.diffuse
-    }
+    // Diffuse
+    public func setMaterialDiffuse(_ diffuse: float3) { self.material.diffuse = diffuse }
+    public func setMaterialDiffuse(_ r: Float,_ g: Float,_ b: Float) { setMaterialDiffuse(float3(r,g,b)) }
+    public func setMaterialDiffuse(_ diffuse: Float) { self.material.diffuse = float3(diffuse, diffuse, diffuse) }
+    public func addMaterialDiffuse(_ value: Float) { self.material.diffuse += value }
+    public func getMaterialDiffuse()->float3 { return self.material.diffuse }
     
     // Specular
-    func setMaterialSpecular(_ specular: float3) {
-        material.specular = specular
-        
-    }
-    func setMaterialSpecular(_ specular: Float) {
-        material.specular = float3(specular, specular, specular)
-    }
-    func addMaterialSpecular(_ value: Float) {
-        material.specular += value
-        
-    }
-    func getMaterialSpecular() -> float3 {
-        return material.specular
-    }
+    public func setMaterialSpecular(_ specular: float3) { self.material.specular = specular }
+    public func setMaterialSpecular(_ r: Float,_ g: Float,_ b: Float) { setMaterialSpecular(float3(r,g,b)) }
+    public func setMaterialSpecular(_ specular: Float) { self.material.specular = float3(specular, specular, specular) }
+    public func addMaterialSpecular(_ value: Float) { self.material.specular += value }
+    public func getMaterialSpecular()->float3 { return self.material.specular }
     
-    func setMaterialIsLit(_ isLit: Bool) {
-        material.isLit = isLit
-    }
-    
-    func isMaterialLit() -> Bool {
-        return material.isLit
-    }
-    
-    func setMaterialShininess(_ value: Float) {
-        material.shininess = value
-    }
-    
-    func getMaterialShininess() -> Float {
-        return material.shininess
-    }
+    // Shininess
+    public func setMaterialShininess(_ shininess: Float) { self.material.shininess = shininess }
+    public func getShininess()->Float { return self.material.shininess }
 }

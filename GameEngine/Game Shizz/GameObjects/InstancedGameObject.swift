@@ -18,24 +18,20 @@ class InstancedGameObject: Node {
     
     func generateInstances(_ instanceCount: Int){
         for _ in 0..<instanceCount {
-            _nodes.append(Node())
+            _nodes.append(Node(name: "node"))
         }
     }
     
     func createBuffers(_ instanceCount: Int) {
         _modelConstantBuffer = Engine.device.makeBuffer(length: ModelConstants.stride(instanceCount), options: [])
     }
-    
-    private func updateModelConstantsBuffer() {
+
+    override func update() {
         var pointer = _modelConstantBuffer.contents().bindMemory(to: ModelConstants.self, capacity: _nodes.count)
         for node in _nodes {
             pointer.pointee.modelMatrix = matrix_multiply(self.modelMatrix, node.modelMatrix)
             pointer = pointer.advanced(by: 1)
         }
-    }
-
-    override func update() {
-        updateModelConstantsBuffer()
         super.update()
     }
 }

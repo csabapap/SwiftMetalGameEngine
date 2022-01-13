@@ -10,7 +10,7 @@ class Pointer: GameObject {
         let random = Int.random(in: 1...10)
         let sign = random <= 5 ? -1 : 1
         rotationIntensity = Float(sign * Int.random(in: 1..<10)) / 100
-        super.init(meshType: MeshType.TriangleCustom)
+        super.init(meshType: MeshType.TriangleCustom, name: "Triangle")
         print("rotation intensity: \(rotationIntensity)")
     }
     

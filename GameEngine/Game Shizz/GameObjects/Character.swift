@@ -3,8 +3,7 @@ import MetalKit
 class Character: GameObject {
     
     init() {
-        super.init(meshType: .Character)
-        setName("Character")
+        super.init(meshType: .Character, name: "Character")
     }
     
 }

@@ -1,3 +1,5 @@
+#ifndef SHARED_METAL
+#define SHARED_METAL
 #include <metal_stdlib>
 using namespace metal;
 
@@ -50,3 +52,4 @@ struct LightData {
     float diffuseIntensity;
     float specularIntensity;
 };
+#endif

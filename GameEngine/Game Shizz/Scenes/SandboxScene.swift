@@ -18,21 +18,21 @@ class SandboxScene: Scene {
         
         debugCamera.setPositionZ(6)
         
-        leftSun.setMaterialColor(color: float4(0.5, 0.5, 0, 1))
+        leftSun.setMaterialColor(float4(0.5, 0.5, 0, 1))
         leftSun.setLightColor(color: float3(0.5, 0.5, 0))
         leftSun.setMaterialIsLit(false)
         leftSun.setPositionY(0.75)
         leftSun.setPositionX(-1)
         addLight(lightObject: leftSun)
         
-        middleSun.setMaterialColor(color: float4(1, 1, 1, 1))
+        middleSun.setMaterialColor(float4(1, 1, 1, 1))
         middleSun.setLightColor(color: float3(1, 1, 1))
         middleSun.setAmbientBrightness(0.3)
         middleSun.setMaterialIsLit(false)
         middleSun.setPosition(float3(0, 0.75, 0))
         addLight(lightObject: middleSun)
         
-        rightSun.setMaterialColor(color: float4(0, 0, 1, 1))
+        rightSun.setMaterialColor(float4(0, 0, 1, 1))
         rightSun.setLightColor(color: float3(0, 0, 1))
         rightSun.setMaterialIsLit(false)
         rightSun.setPosition(float3(1, 0.75, 0))
@@ -64,6 +64,6 @@ class SandboxScene: Scene {
             cameraDirection = -1
         }
         
-        imperial.setMaterialShininess(imperial.getMaterialShininess() + Mouse.GetDWheel())
+        imperial.setMaterialShininess(imperial.getShininess() + Mouse.GetDWheel())
     }
 }

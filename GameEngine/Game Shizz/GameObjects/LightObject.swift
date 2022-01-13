@@ -15,11 +15,6 @@ class LightObject: GameObject {
         self.init(meshType: .None, name: name)
     }
     
-    init(meshType: MeshType, name: String) {
-        super.init(meshType: meshType)
-        self._name = name
-    }
-    
     override func update() {
         self.lightData.position = self.getPosition()
         super.update()
