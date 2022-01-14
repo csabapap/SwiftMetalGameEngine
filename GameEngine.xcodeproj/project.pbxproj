@@ -46,6 +46,7 @@
 		E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03327873EAD004EB927 /* Imperial.obj */; };
 		E8ACC03727873FE2004EB927 /* ImperialSpaceShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */; };
 		E8ACC039278782A7004EB927 /* Imperial_Red.png in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC038278782A7004EB927 /* Imperial_Red.png */; };
+		E8B573BB2791FF1900849F52 /* PlaygroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B573BA2791FF1900849F52 /* PlaygroundScene.swift */; };
 		E8C5945C27677C8900B9B48C /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945B27677C8900B9B48C /* Cube.swift */; };
 		E8C5945E2769102E00B9B48C /* DepthStencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */; };
 		E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C59465276B19EB00B9B48C /* CubesScene.swift */; };
@@ -113,6 +114,7 @@
 		E8ACC03327873EAD004EB927 /* Imperial.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.obj; sourceTree = "<group>"; };
 		E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialSpaceShip.swift; sourceTree = "<group>"; };
 		E8ACC038278782A7004EB927 /* Imperial_Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Imperial_Red.png; sourceTree = "<group>"; };
+		E8B573BA2791FF1900849F52 /* PlaygroundScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundScene.swift; sourceTree = "<group>"; };
 		E8C5945B27677C8900B9B48C /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStencilStateLibrary.swift; sourceTree = "<group>"; };
 		E8C59465276B19EB00B9B48C /* CubesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesScene.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		A6B6AA2B275CF758006BAD63 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E8B573BA2791FF1900849F52 /* PlaygroundScene.swift */,
 				A6B6AA2C275CF770006BAD63 /* Scene.swift */,
 				A6B6AA2F275CF891006BAD63 /* SandboxScene.swift */,
 				E8C59465276B19EB00B9B48C /* CubesScene.swift */,
@@ -534,6 +537,7 @@
 				E870E069278255A9007137DB /* Cruiser.swift in Sources */,
 				E8F0F028277B625900B86738 /* Library.swift in Sources */,
 				E8F0F0402781BAD000B86738 /* SamplerStateLibrary.swift in Sources */,
+				E8B573BB2791FF1900849F52 /* PlaygroundScene.swift in Sources */,
 				A6B6AA30275CF891006BAD63 /* SandboxScene.swift in Sources */,
 				E8F0F020277B4F3300B86738 /* GameTime.swift in Sources */,
 				A6EE15972756D12800FFF7CD /* RenderPipelineStateLibrary.swift in Sources */,
