@@ -4,6 +4,7 @@ enum SceneType {
     case Sandbox
     case CubesScene
     case PartyParotScene
+    case PlaygroundScene
 }
 
 class SceneManager {
@@ -21,6 +22,8 @@ class SceneManager {
             currentScene = CubesScene()
         case .PartyParotScene:
             currentScene = PartyParotScene()
+        case .PlaygroundScene:
+            currentScene = PlaygroundScene()
         }
     }
     
