@@ -98,24 +98,34 @@ class ModelMesh: Mesh {
 class CustomMesh: Mesh {
     
     var vertices: [Vertex] = []
+    var indices: [UInt32] = []
     var vertexBuffer: MTLBuffer!
+    var indexBuffer: MTLBuffer!
     var vertexCount: Int! {
         return vertices.count
+    }
+    var indexCount: Int {
+        return indices.count
     }
     
     var instanceCount: Int = 1
     
     init() {
-        createVertices()
+        createMesh()
         createBuffers()
     }
     
-    func createVertices() { }
+    func createMesh() { }
 
     func createBuffers() {
-        vertexBuffer = Engine.device.makeBuffer(bytes: vertices, length: Vertex.stride(vertices.count), options: [])
+        if vertexCount > 0 {
+            vertexBuffer = Engine.device.makeBuffer(bytes: vertices, length: Vertex.stride(vertices.count), options: [])
+        }
+        
+        if indexCount > 0 {
+            indexBuffer = Engine.device.makeBuffer(bytes: indices, length: UInt32.stride(indices.count), options: [])
+        }
     }
-    
     
     func addVertex(position: float3,
                    color: float4 = float4(1,0,1,1),
@@ -129,22 +139,36 @@ class CustomMesh: Mesh {
             normal: normal))
     }
     
+    func addIndices(_ indexes: [UInt32]) {
+        self.indices.append(contentsOf: indexes)
+    }
+    
     func setInstanceCount(_ count: Int) {
         self.instanceCount = count
     }
     
     func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        if vertexCount <= 0 { return }
         renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         
-        renderCommandEncoder.drawPrimitives(type: .triangle,
-                                            vertexStart: 0,
-                                            vertexCount: vertexCount,
-                                            instanceCount: instanceCount)
+        if indexCount > 0 {
+            renderCommandEncoder.drawIndexedPrimitives(type: .triangle,
+                                                       indexCount: indexCount,
+                                                       indexType: .uint32,
+                                                       indexBuffer: indexBuffer,
+                                                       indexBufferOffset: 0,
+                                                       instanceCount: instanceCount)
+        } else {
+            renderCommandEncoder.drawPrimitives(type: .triangle,
+                                                vertexStart: 0,
+                                                vertexCount: vertexCount,
+                                                instanceCount: instanceCount)
+        }
     }
 }
 
 class TriangleCustomMesh: CustomMesh {
-    override func createVertices() {
+    override func createMesh() {
         addVertex(position: float3(0, 1, 0), color: float4(1, 0, 0, 1))
         addVertex(position: float3(-1, -1, 0), color: float4(0, 1, 0, 1))
         addVertex(position: float3(1, -1, 0), color: float4(0, 0, 1, 1))
@@ -152,19 +176,18 @@ class TriangleCustomMesh: CustomMesh {
 }
 
 class QuadCustomMesh: CustomMesh {
-    override func createVertices() {
+    override func createMesh() {
         addVertex(position: float3(1, 1, 0), color: float4(1, 0, 0, 1), textureCoordinate: float2(1, 0), normal: float3(0, 0, 1))
         addVertex(position: float3(-1, 1, 0), color: float4(0, 1, 0, 1), textureCoordinate: float2(0, 0), normal: float3(0, 0, 1))
         addVertex(position: float3(-1, -1, 0), color: float4(0, 0, 1, 1), textureCoordinate: float2(0, 1), normal: float3(0, 0, 1))
-        
-        addVertex(position: float3(1, 1, 0), color: float4(1, 0, 0, 1), textureCoordinate: float2(1, 0), normal: float3(0, 0, 1))
-        addVertex(position: float3(-1, -1, 0), color: float4(0, 0, 1, 1), textureCoordinate: float2(0, 1), normal: float3(0, 0, 1))
         addVertex(position: float3(1, -1, 0), color: float4(1, 0, 1, 1), textureCoordinate: float2(1, 1), normal: float3(0, 0, 1))
+        
+        addIndices([0, 1, 2,    0, 2, 3])
     }
 }
 
 class CubeCustomMesh: CustomMesh {
-    override func createVertices() {
+    override func createMesh() {
         //Left
         addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 0.5, 0.0, 1.0))
         addVertex(position: float3(-1.0,-1.0, 1.0), color: float4(0.0, 1.0, 0.5, 1.0))

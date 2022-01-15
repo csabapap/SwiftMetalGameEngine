@@ -30,6 +30,7 @@ extension Float: sizeable {
     }
 }
 
+extension UInt32: sizeable { }
 extension Int32: sizeable { }
 extension float2: sizeable { }
 extension float3: sizeable { }
