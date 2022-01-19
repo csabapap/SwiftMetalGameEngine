@@ -49,6 +49,8 @@
 		E8B573BB2791FF1900849F52 /* PlaygroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B573BA2791FF1900849F52 /* PlaygroundScene.swift */; };
 		E8B573C8279600C200849F52 /* suzannes.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E8B573C6279600C200849F52 /* suzannes.mtl */; };
 		E8B573C9279600C200849F52 /* suzannes.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8B573C7279600C200849F52 /* suzannes.obj */; };
+		E8B573CB2796C16500849F52 /* Chest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B573CA2796C16500849F52 /* Chest.swift */; };
+		E8B573CE2796C1F900849F52 /* chest.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8B573CD2796C1F900849F52 /* chest.obj */; };
 		E8C5945C27677C8900B9B48C /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945B27677C8900B9B48C /* Cube.swift */; };
 		E8C5945E2769102E00B9B48C /* DepthStencilStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */; };
 		E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C59465276B19EB00B9B48C /* CubesScene.swift */; };
@@ -119,6 +121,8 @@
 		E8B573BA2791FF1900849F52 /* PlaygroundScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundScene.swift; sourceTree = "<group>"; };
 		E8B573C6279600C200849F52 /* suzannes.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = suzannes.mtl; sourceTree = "<group>"; };
 		E8B573C7279600C200849F52 /* suzannes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = suzannes.obj; sourceTree = "<group>"; };
+		E8B573CA2796C16500849F52 /* Chest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chest.swift; sourceTree = "<group>"; };
+		E8B573CD2796C1F900849F52 /* chest.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.obj; sourceTree = "<group>"; };
 		E8C5945B27677C8900B9B48C /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		E8C5945D2769102E00B9B48C /* DepthStencilStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthStencilStateLibrary.swift; sourceTree = "<group>"; };
 		E8C59465276B19EB00B9B48C /* CubesScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesScene.swift; sourceTree = "<group>"; };
@@ -309,6 +313,14 @@
 			path = suzannes;
 			sourceTree = "<group>";
 		};
+		E8B573CC2796C1EB00849F52 /* chest */ = {
+			isa = PBXGroup;
+			children = (
+				E8B573CD2796C1F900849F52 /* chest.obj */,
+			);
+			path = chest;
+			sourceTree = "<group>";
+		};
 		E8C5945A27677C5400B9B48C /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +335,7 @@
 				E870E06F27825C97007137DB /* Character.swift */,
 				E870E07527837838007137DB /* Sun.swift */,
 				E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */,
+				E8B573CA2796C16500849F52 /* Chest.swift */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -407,6 +420,7 @@
 		E8F0F0362780E63E00B86738 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				E8B573CC2796C1EB00849F52 /* chest */,
 				E8B573C5279600B100849F52 /* suzannes */,
 				E8ACC03127873E7A004EB927 /* imperial */,
 				E870E06A27825C77007137DB /* character */,
@@ -487,6 +501,7 @@
 				E8B573C8279600C200849F52 /* suzannes.mtl in Resources */,
 				A626790A274CD23F0087FE51 /* Assets.xcassets in Resources */,
 				E8B573C9279600C200849F52 /* suzannes.obj in Resources */,
+				E8B573CE2796C1F900849F52 /* chest.obj in Resources */,
 				E8F0F045278215C500B86738 /* cruiser.obj in Resources */,
 				E870E06D27825C83007137DB /* Character.mtl in Resources */,
 				E870E06E27825C83007137DB /* Character.obj in Resources */,
@@ -556,6 +571,7 @@
 				E8B573BB2791FF1900849F52 /* PlaygroundScene.swift in Sources */,
 				A6B6AA30275CF891006BAD63 /* SandboxScene.swift in Sources */,
 				E8F0F020277B4F3300B86738 /* GameTime.swift in Sources */,
+				E8B573CB2796C16500849F52 /* Chest.swift in Sources */,
 				A6EE15972756D12800FFF7CD /* RenderPipelineStateLibrary.swift in Sources */,
 				E8C59466276B19EB00B9B48C /* CubesScene.swift in Sources */,
 			);

@@ -1,58 +1,72 @@
 import MetalKit
 
 enum MeshType {
+    case None
+    
     case TriangleCustom
     case QuadCustom
     case CubeCustom
     
-    case None
     case Cruiser
-    case Character
     case Sphere
+    case TheSuzannes
     case Imperial
+    case Character
+    case Chest
 }
 
 class MeshLibrary: Library<MeshType, Mesh> {
-    private var meshes: [MeshType: Mesh] = [:]
+    private var library: [MeshType: Mesh] = [:]
     
     override func fillLibrary() {
-        meshes.updateValue(TriangleCustomMesh(), forKey: .TriangleCustom)
-        meshes.updateValue(QuadCustomMesh(), forKey: .QuadCustom)
-        meshes.updateValue(CubeCustomMesh(), forKey: .CubeCustom)
-        meshes.updateValue(NoMesh(), forKey: .None)
-        meshes.updateValue(ModelMesh(modelName: "cruiser"), forKey: .Cruiser)
-        meshes.updateValue(ModelMesh(modelName: "Character"), forKey: .Character)
-        meshes.updateValue(ModelMesh(modelName: "sphere"), forKey: .Sphere)
-        meshes.updateValue(ModelMesh(modelName: "Imperial"), forKey: .Imperial)
+        library.updateValue(NoMesh(), forKey: .None)
+        
+        library.updateValue(TriangleMesh(), forKey: .TriangleCustom)
+        library.updateValue(QuadMesh(), forKey: .QuadCustom)
+        library.updateValue(CubeMesh(), forKey: .CubeCustom)
+
+        library.updateValue(Mesh(modelName: "cruiser"), forKey: .Cruiser)
+        library.updateValue(Mesh(modelName: "sphere"), forKey: .Sphere)
+        library.updateValue(Mesh(modelName: "suzannes"), forKey: .TheSuzannes)
+        library.updateValue(Mesh(modelName: "Imperial"), forKey: .Imperial)
+        library.updateValue(Mesh(modelName: "Character"), forKey: .Character)
+        library.updateValue(Mesh(modelName: "chest"), forKey: .Chest)
     }
-
-    override subscript(type: MeshType) -> Mesh? {
-        return meshes[type]
-    }
-}
-
-protocol Mesh {
-    func setInstanceCount(_ count: Int)
-    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder)
-}
-
-class NoMesh: Mesh {
-    func setInstanceCount(_ count: Int) { }
-    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) { }
-}
-
-class ModelMesh: Mesh {
     
-    private var meshes: [Any]!
-    private var instanceCount: Int = 1
+    override subscript(_ type: MeshType)->Mesh {
+        return library[type]!
+    }
+}
+
+class Mesh {
+    private var _vertices: [Vertex] = []
+    private var _vertexCount: Int = 0
+    private var _vertexBuffer: MTLBuffer! = nil
+    private var _instanceCount: Int = 1
+    private var _submeshes: [Submesh] = []
+    
+    init() {
+        createMesh()
+        createBuffer()
+    }
     
     init(modelName: String) {
-        loadModel(modelName: modelName)
+        createMeshFromModel(modelName)
     }
     
-    func loadModel(modelName: String) {
-        guard let assetUrl = Bundle.main.url(forResource: modelName, withExtension: "obj") else {
-            fatalError("Asset \(modelName) does not exist")
+    func createMesh() { }
+    
+    private func createBuffer() {
+        if(_vertices.count > 0){
+            _vertexBuffer = Engine.device.makeBuffer(bytes: _vertices,
+                                                     length: Vertex.stride(_vertices.count),
+                                                     options: [])
+        }
+    }
+    
+    private func createMeshFromModel(_ modelName: String, ext: String = "obj") {
+        guard let assetURL = Bundle.main.url(forResource: modelName, withExtension: ext) else {
+            fatalError("Asset \(modelName) does not exist.")
         }
         
         let descriptor = MTKModelIOVertexDescriptorFromMetal(Graphics.VertexDescriptors[.Basic])
@@ -62,179 +76,182 @@ class ModelMesh: Mesh {
         (descriptor.attributes[3] as! MDLVertexAttribute).name = MDLVertexAttributeNormal
         
         let bufferAllocator = MTKMeshBufferAllocator(device: Engine.device)
-        let asset: MDLAsset = MDLAsset(url: assetUrl,
+        let asset: MDLAsset = MDLAsset(url: assetURL,
                                        vertexDescriptor: descriptor,
-                                       bufferAllocator: bufferAllocator)
-        do {
-            self.meshes = try MTKMesh.newMeshes(asset: asset, device: Engine.device).metalKitMeshes
-        } catch let error as NSError {
+                                       bufferAllocator: bufferAllocator,
+                                       preserveTopology: true,
+                                       error: nil)
+        
+        var mtkMeshes: [MTKMesh] = []
+        do{
+            mtkMeshes = try MTKMesh.newMeshes(asset: asset,
+                                              device: Engine.device).metalKitMeshes
+        } catch {
             print("ERROR::LOADING_MESH::__\(modelName)__::\(error)")
         }
+        
+        let mtkMesh = mtkMeshes[0]
+        self._vertexBuffer = mtkMesh.vertexBuffers[0].buffer
+        self._vertexCount = mtkMesh.vertexCount
+        for i in 0..<mtkMesh.submeshes.count {
+            let mtkSubmesh = mtkMesh.submeshes[i]
+            let submesh = Submesh(mtkSubmesh: mtkSubmesh)
+            addSubmesh(submesh)
+        }
     }
- 
+    
     func setInstanceCount(_ count: Int) {
-        instanceCount = count
+        self._instanceCount = count
+    }
+    
+    func addSubmesh(_ submesh: Submesh) {
+        _submeshes.append(submesh)
+    }
+    
+    func addVertex(position: float3,
+                   color: float4 = float4(1,0,1,1),
+                   textureCoordinate: float2 = float2(0,0),
+                   normal: float3 = float3(0,1,0)) {
+        _vertices.append(Vertex(position: position,
+                                color: color,
+                                textureCoordinates: textureCoordinate,
+                                normal: normal))
     }
     
     func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        guard let mtkMeshes = self.meshes as? [MTKMesh] else { return }
-        
-        for mesh in mtkMeshes {
-            for vertexBuffer in mesh.vertexBuffers {
-                renderCommandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, index: 0)
-                for submesh in mesh.submeshes {
-                    renderCommandEncoder.drawIndexedPrimitives(type: .triangle,
+        if(_vertexBuffer != nil) {
+            renderCommandEncoder.setVertexBuffer(_vertexBuffer, offset: 0, index: 0)
+            
+            if(_submeshes.count > 0) {
+                for submesh in _submeshes {
+                    renderCommandEncoder.drawIndexedPrimitives(type: submesh.primitiveType,
                                                                indexCount: submesh.indexCount,
                                                                indexType: submesh.indexType,
-                                                               indexBuffer: submesh.indexBuffer.buffer,
-                                                               indexBufferOffset: submesh.indexBuffer.offset,
-                                                               instanceCount: instanceCount)
+                                                               indexBuffer: submesh.indexBuffer,
+                                                               indexBufferOffset: submesh.indexBufferOffset)
                 }
+            } else {
+                renderCommandEncoder.drawPrimitives(type: .triangle,
+                                                    vertexStart: 0,
+                                                    vertexCount: _vertices.count,
+                                                    instanceCount: _instanceCount)
             }
         }
     }
 }
 
-class CustomMesh: Mesh {
+class Submesh {
+    private var _indices: [UInt32] = []
     
-    var vertices: [Vertex] = []
-    var indices: [UInt32] = []
-    var vertexBuffer: MTLBuffer!
-    var indexBuffer: MTLBuffer!
-    var vertexCount: Int! {
-        return vertices.count
-    }
-    var indexCount: Int {
-        return indices.count
-    }
+    private var _indexCount: Int = 0
+    public var indexCount: Int { return _indexCount }
     
-    var instanceCount: Int = 1
-    
-    init() {
-        createMesh()
-        createBuffers()
-    }
-    
-    func createMesh() { }
+    private var _indexBuffer: MTLBuffer!
+    public var indexBuffer: MTLBuffer { return _indexBuffer }
 
-    func createBuffers() {
-        if vertexCount > 0 {
-            vertexBuffer = Engine.device.makeBuffer(bytes: vertices, length: Vertex.stride(vertices.count), options: [])
-        }
-        
-        if indexCount > 0 {
-            indexBuffer = Engine.device.makeBuffer(bytes: indices, length: UInt32.stride(indices.count), options: [])
-        }
+    private var _primitiveType: MTLPrimitiveType = .triangle
+    public var primitiveType: MTLPrimitiveType { return _primitiveType }
+    
+    private var _indexType: MTLIndexType = .uint32
+    public var indexType: MTLIndexType { return _indexType }
+    
+    private var _indexBufferOffset: Int = 0
+    public var indexBufferOffset: Int { return _indexBufferOffset }
+    
+    init(indices: [UInt32]) {
+        self._indices = indices
+        self._indexCount = indices.count
+        createIndexBuffer()
     }
     
-    func addVertex(position: float3,
-                   color: float4 = float4(1,0,1,1),
-                   textureCoordinate: float2 = float2(repeating: 0),
-                   normal: float3 = float3(0, 1, 0)
-    ) {
-        vertices.append(Vertex(
-            position: position,
-            color: color,
-            textureCoordinates: textureCoordinate,
-            normal: normal))
+    init(mtkSubmesh: MTKSubmesh) {
+        _indexBuffer = mtkSubmesh.indexBuffer.buffer
+        _indexBufferOffset = mtkSubmesh.indexBuffer.offset
+        _indexCount = mtkSubmesh.indexCount
+        _indexType = mtkSubmesh.indexType
+        _primitiveType = mtkSubmesh.primitiveType
     }
     
-    func addIndices(_ indexes: [UInt32]) {
-        self.indices.append(contentsOf: indexes)
-    }
-    
-    func setInstanceCount(_ count: Int) {
-        self.instanceCount = count
-    }
-    
-    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        if vertexCount <= 0 { return }
-        renderCommandEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-        
-        if indexCount > 0 {
-            renderCommandEncoder.drawIndexedPrimitives(type: .triangle,
-                                                       indexCount: indexCount,
-                                                       indexType: .uint32,
-                                                       indexBuffer: indexBuffer,
-                                                       indexBufferOffset: 0,
-                                                       instanceCount: instanceCount)
-        } else {
-            renderCommandEncoder.drawPrimitives(type: .triangle,
-                                                vertexStart: 0,
-                                                vertexCount: vertexCount,
-                                                instanceCount: instanceCount)
+    private func createIndexBuffer() {
+        if(_indices.count > 0) {
+            _indexBuffer = Engine.device.makeBuffer(bytes: _indices,
+                                                    length: UInt32.stride(_indices.count),
+                                                    options: [])
         }
     }
 }
 
-class TriangleCustomMesh: CustomMesh {
+class NoMesh: Mesh { }
+
+class TriangleMesh: Mesh {
     override func createMesh() {
-        addVertex(position: float3(0, 1, 0), color: float4(1, 0, 0, 1))
-        addVertex(position: float3(-1, -1, 0), color: float4(0, 1, 0, 1))
-        addVertex(position: float3(1, -1, 0), color: float4(0, 0, 1, 1))
+        addVertex(position: float3( 0, 1,0), color: float4(1,0,0,1), textureCoordinate: float2(0.5,0.0))
+        addVertex(position: float3(-1,-1,0), color: float4(0,1,0,1), textureCoordinate: float2(0.0,1.0))
+        addVertex(position: float3( 1,-1,0), color: float4(0,0,1,1), textureCoordinate: float2(1.0,1.0))
     }
 }
 
-class QuadCustomMesh: CustomMesh {
+class QuadMesh: Mesh {
     override func createMesh() {
-        addVertex(position: float3(1, 1, 0), color: float4(1, 0, 0, 1), textureCoordinate: float2(1, 0), normal: float3(0, 0, 1))
-        addVertex(position: float3(-1, 1, 0), color: float4(0, 1, 0, 1), textureCoordinate: float2(0, 0), normal: float3(0, 0, 1))
-        addVertex(position: float3(-1, -1, 0), color: float4(0, 0, 1, 1), textureCoordinate: float2(0, 1), normal: float3(0, 0, 1))
-        addVertex(position: float3(1, -1, 0), color: float4(1, 0, 1, 1), textureCoordinate: float2(1, 1), normal: float3(0, 0, 1))
+        addVertex(position: float3( 1, 1,0), color: float4(1,0,0,1), textureCoordinate: float2(1,0), normal: float3(0,0,1)) //Top Right
+        addVertex(position: float3(-1, 1,0), color: float4(0,1,0,1), textureCoordinate: float2(0,0), normal: float3(0,0,1)) //Top Left
+        addVertex(position: float3(-1,-1,0), color: float4(0,0,1,1), textureCoordinate: float2(0,1), normal: float3(0,0,1)) //Bottom Left
+        addVertex(position: float3( 1,-1,0), color: float4(1,0,1,1), textureCoordinate: float2(1,1), normal: float3(0,0,1)) //Bottom Right
         
-        addIndices([0, 1, 2,    0, 2, 3])
+        addSubmesh(Submesh(indices: [
+            0,1,2,    0,2,3
+        ]))
     }
 }
 
-class CubeCustomMesh: CustomMesh {
+class CubeMesh: Mesh {
     override func createMesh() {
         //Left
-        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 0.5, 0.0, 1.0))
-        addVertex(position: float3(-1.0,-1.0, 1.0), color: float4(0.0, 1.0, 0.5, 1.0))
-        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(0.0, 0.5, 1.0, 1.0))
-        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 1.0, 0.0, 1.0))
-        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0))
-        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(1.0, 0.0, 1.0, 1.0))
-            
+        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 0.5, 0.0, 1.0), normal: float3(-1, 0, 0))
+        addVertex(position: float3(-1.0,-1.0, 1.0), color: float4(0.0, 1.0, 0.5, 1.0), normal: float3(-1, 0, 0))
+        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(0.0, 0.5, 1.0, 1.0), normal: float3(-1, 0, 0))
+        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 1.0, 0.0, 1.0), normal: float3(-1, 0, 0))
+        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0), normal: float3(-1, 0, 0))
+        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(1.0, 0.0, 1.0, 1.0), normal: float3(-1, 0, 0))
+        
         //RIGHT
-        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 0.0, 0.5, 1.0))
-        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(0.0, 1.0, 0.0, 1.0))
-        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(0.0, 0.5, 1.0, 1.0))
-        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(1.0, 1.0, 0.0, 1.0))
-        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0))
-        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 0.5, 1.0, 1.0))
-    
+        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 0.0, 0.5, 1.0), normal: float3( 1, 0, 0))
+        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(0.0, 1.0, 0.0, 1.0), normal: float3( 1, 0, 0))
+        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(0.0, 0.5, 1.0, 1.0), normal: float3( 1, 0, 0))
+        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(1.0, 1.0, 0.0, 1.0), normal: float3( 1, 0, 0))
+        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0), normal: float3( 1, 0, 0))
+        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 0.5, 1.0, 1.0), normal: float3( 1, 0, 0))
+        
         //TOP
-        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 0.0, 0.0, 1.0))
-        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(0.0, 1.0, 0.0, 1.0))
-        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(0.0, 0.0, 1.0, 1.0))
-        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 1.0, 0.0, 1.0))
-        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(0.5, 1.0, 1.0, 1.0))
-        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(1.0, 0.0, 1.0, 1.0))
+        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 0.0, 0.0, 1.0), normal: float3( 0, 1, 0))
+        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(0.0, 1.0, 0.0, 1.0), normal: float3( 0, 1, 0))
+        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(0.0, 0.0, 1.0, 1.0), normal: float3( 0, 1, 0))
+        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 1.0, 0.0, 1.0), normal: float3( 0, 1, 0))
+        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(0.5, 1.0, 1.0, 1.0), normal: float3( 0, 1, 0))
+        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(1.0, 0.0, 1.0, 1.0), normal: float3( 0, 1, 0))
         
         //BOTTOM
-        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 0.5, 0.0, 1.0))
-        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(0.5, 1.0, 0.0, 1.0))
-        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(0.0, 0.0, 1.0, 1.0))
-        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 1.0, 0.5, 1.0))
-        addVertex(position: float3(-1.0,-1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0))
-        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 0.5, 1.0, 1.0))
-            
+        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 0.5, 0.0, 1.0), normal: float3( 0,-1, 0))
+        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(0.5, 1.0, 0.0, 1.0), normal: float3( 0,-1, 0))
+        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(0.0, 0.0, 1.0, 1.0), normal: float3( 0,-1, 0))
+        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 1.0, 0.5, 1.0), normal: float3( 0,-1, 0))
+        addVertex(position: float3(-1.0,-1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0), normal: float3( 0,-1, 0))
+        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 0.5, 1.0, 1.0), normal: float3( 0,-1, 0))
+        
         //BACK
-        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(1.0, 0.5, 0.0, 1.0))
-        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(0.5, 1.0, 0.0, 1.0))
-        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(0.0, 0.0, 1.0, 1.0))
-        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(1.0, 1.0, 0.0, 1.0))
-        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(0.0, 1.0, 1.0, 1.0))
-        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 0.5, 1.0, 1.0))
+        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(1.0, 0.5, 0.0, 1.0), normal: float3( 0, 0,-1))
+        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(0.5, 1.0, 0.0, 1.0), normal: float3( 0, 0,-1))
+        addVertex(position: float3(-1.0, 1.0,-1.0), color: float4(0.0, 0.0, 1.0, 1.0), normal: float3( 0, 0,-1))
+        addVertex(position: float3( 1.0, 1.0,-1.0), color: float4(1.0, 1.0, 0.0, 1.0), normal: float3( 0, 0,-1))
+        addVertex(position: float3( 1.0,-1.0,-1.0), color: float4(0.0, 1.0, 1.0, 1.0), normal: float3( 0, 0,-1))
+        addVertex(position: float3(-1.0,-1.0,-1.0), color: float4(1.0, 0.5, 1.0, 1.0), normal: float3( 0, 0,-1))
         
         //FRONT
-        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(1.0, 0.5, 0.0, 1.0))
-        addVertex(position: float3(-1.0,-1.0, 1.0), color: float4(0.0, 1.0, 0.0, 1.0))
-        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(0.5, 0.0, 1.0, 1.0))
-        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 1.0, 0.5, 1.0))
-        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0))
-        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 0.0, 1.0, 1.0))
-        
+        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(1.0, 0.5, 0.0, 1.0), normal: float3( 0, 0, 1))
+        addVertex(position: float3(-1.0,-1.0, 1.0), color: float4(0.0, 1.0, 0.0, 1.0), normal: float3( 0, 0, 1))
+        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(0.5, 0.0, 1.0, 1.0), normal: float3( 0, 0, 1))
+        addVertex(position: float3( 1.0, 1.0, 1.0), color: float4(1.0, 1.0, 0.5, 1.0), normal: float3( 0, 0, 1))
+        addVertex(position: float3(-1.0, 1.0, 1.0), color: float4(0.0, 1.0, 1.0, 1.0), normal: float3( 0, 0, 1))
+        addVertex(position: float3( 1.0,-1.0, 1.0), color: float4(1.0, 0.0, 1.0, 1.0), normal: float3( 0, 0, 1))
     }
 }

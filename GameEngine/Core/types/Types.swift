@@ -66,8 +66,8 @@ struct Material: sizeable {
     var shininess: Float = 2
     
     init() {
-        color = float4(0.9, 0.3, 0.4, 1.0)
-        useMaterialColor = false
+        color = float4(0.6, 0.6, 0.6, 1.0)
+        useMaterialColor = true
         useTexture = false
     }
 }
