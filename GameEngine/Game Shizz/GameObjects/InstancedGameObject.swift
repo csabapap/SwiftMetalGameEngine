@@ -55,7 +55,6 @@ extension InstancedGameObject: Renderable {
 extension InstancedGameObject {
     public func setColor(_ color: float4){
         self.material.color = color
-        self.material.useMaterialColor = true
     }
 }
 

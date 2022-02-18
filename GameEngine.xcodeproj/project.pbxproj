@@ -41,6 +41,9 @@
 		E870E078278391BC007137DB /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = E870E077278391BC007137DB /* sphere.obj */; };
 		E87B54B12770DC6F00E0DA5A /* InstancedGameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */; };
 		E87B54B32771DEC600E0DA5A /* CubeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B22771DEC600E0DA5A /* CubeCollection.swift */; };
+		E88CD22327AEB4F5009EA911 /* Chest_Metal_Base_Color.png in Resources */ = {isa = PBXBuildFile; fileRef = E88CD22027AEB4F4009EA911 /* Chest_Metal_Base_Color.png */; };
+		E88CD22427AEB4F5009EA911 /* Chest_Wood_Base_Color.png in Resources */ = {isa = PBXBuildFile; fileRef = E88CD22127AEB4F4009EA911 /* Chest_Wood_Base_Color.png */; };
+		E88CD22527AEB4F5009EA911 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E88CD22227AEB4F5009EA911 /* chest.mtl */; };
 		E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8961446276B8D9700D4447F /* ColorUtils.swift */; };
 		E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03227873EAD004EB927 /* Imperial.mtl */; };
 		E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03327873EAD004EB927 /* Imperial.obj */; };
@@ -113,6 +116,9 @@
 		E870E077278391BC007137DB /* sphere.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstancedGameObject.swift; sourceTree = "<group>"; };
 		E87B54B22771DEC600E0DA5A /* CubeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeCollection.swift; sourceTree = "<group>"; };
+		E88CD22027AEB4F4009EA911 /* Chest_Metal_Base_Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chest_Metal_Base_Color.png; sourceTree = "<group>"; };
+		E88CD22127AEB4F4009EA911 /* Chest_Wood_Base_Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chest_Wood_Base_Color.png; sourceTree = "<group>"; };
+		E88CD22227AEB4F5009EA911 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.mtl; sourceTree = "<group>"; };
 		E8961446276B8D9700D4447F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		E8ACC03227873EAD004EB927 /* Imperial.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.mtl; sourceTree = "<group>"; };
 		E8ACC03327873EAD004EB927 /* Imperial.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.obj; sourceTree = "<group>"; };
@@ -316,6 +322,9 @@
 		E8B573CC2796C1EB00849F52 /* chest */ = {
 			isa = PBXGroup;
 			children = (
+				E88CD22027AEB4F4009EA911 /* Chest_Metal_Base_Color.png */,
+				E88CD22127AEB4F4009EA911 /* Chest_Wood_Base_Color.png */,
+				E88CD22227AEB4F5009EA911 /* chest.mtl */,
 				E8B573CD2796C1F900849F52 /* chest.obj */,
 			);
 			path = chest;
@@ -507,11 +516,14 @@
 				E870E06E27825C83007137DB /* Character.obj in Resources */,
 				E870E078278391BC007137DB /* sphere.obj in Resources */,
 				E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */,
+				E88CD22527AEB4F5009EA911 /* chest.mtl in Resources */,
 				A626790D274CD23F0087FE51 /* Main.storyboard in Resources */,
 				E8F0F046278215C500B86738 /* cruiser.bmp in Resources */,
 				E8ACC039278782A7004EB927 /* Imperial_Red.png in Resources */,
+				E88CD22427AEB4F5009EA911 /* Chest_Wood_Base_Color.png in Resources */,
 				E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */,
 				E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */,
+				E88CD22327AEB4F5009EA911 /* Chest_Metal_Base_Color.png in Resources */,
 				E8F0F047278215C500B86738 /* cruiser.mtl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

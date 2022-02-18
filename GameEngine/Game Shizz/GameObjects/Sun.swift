@@ -10,8 +10,8 @@ import MetalKit
 class Sun: LightObject {
     
     init() {
-        super.init(meshType: .None, name: "Sun")
+        super.init(meshType: .Sphere, name: "Sun")
         setMaterialColor(float4(0.5, 0.5, 0, 1))
-        setScale(0.025)
+        setScale(0.5)
     }
 }

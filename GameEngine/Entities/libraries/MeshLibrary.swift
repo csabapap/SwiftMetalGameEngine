@@ -82,20 +82,28 @@ class Mesh {
                                        preserveTopology: true,
                                        error: nil)
         
+        asset.loadTextures()
+        
         var mtkMeshes: [MTKMesh] = []
+        var mdlMeshes: [MDLMesh] = []
         do{
             mtkMeshes = try MTKMesh.newMeshes(asset: asset,
                                               device: Engine.device).metalKitMeshes
+            
+            mdlMeshes = try MTKMesh.newMeshes(asset: asset, device: Engine.device).modelIOMeshes
         } catch {
             print("ERROR::LOADING_MESH::__\(modelName)__::\(error)")
         }
         
         let mtkMesh = mtkMeshes[0]
+        let mdlMesh = mdlMeshes[0]
         self._vertexBuffer = mtkMesh.vertexBuffers[0].buffer
         self._vertexCount = mtkMesh.vertexCount
         for i in 0..<mtkMesh.submeshes.count {
             let mtkSubmesh = mtkMesh.submeshes[i]
-            let submesh = Submesh(mtkSubmesh: mtkSubmesh)
+            let mdlSubmesh = mdlMesh.submeshes![i] as! MDLSubmesh
+            let submesh = Submesh(mtkSubmesh: mtkSubmesh,
+                                  mdlSubmesh: mdlSubmesh)
             addSubmesh(submesh)
         }
     }
@@ -118,12 +126,18 @@ class Mesh {
                                 normal: normal))
     }
     
-    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder,
+                        baseColorTextureType: TextureTypes = .None,
+                        customMaterial: Material? = nil) {
         if(_vertexBuffer != nil) {
             renderCommandEncoder.setVertexBuffer(_vertexBuffer, offset: 0, index: 0)
             
             if(_submeshes.count > 0) {
                 for submesh in _submeshes {
+                    submesh.applyTextures(renderCommandEncoder: renderCommandEncoder,
+                                          customBaseColorTextureType: baseColorTextureType)
+                    submesh.applyMaterials(renderCommandEncoder: renderCommandEncoder,
+                                           customMaterial: customMaterial)
                     renderCommandEncoder.drawIndexedPrimitives(type: submesh.primitiveType,
                                                                indexCount: submesh.indexCount,
                                                                indexType: submesh.indexType,
@@ -158,18 +172,49 @@ class Submesh {
     private var _indexBufferOffset: Int = 0
     public var indexBufferOffset: Int { return _indexBufferOffset }
     
+    private var material = Material()
+    private var baseColorTexture: MTLTexture!
+    
     init(indices: [UInt32]) {
         self._indices = indices
         self._indexCount = indices.count
         createIndexBuffer()
     }
     
-    init(mtkSubmesh: MTKSubmesh) {
+    init(mtkSubmesh: MTKSubmesh, mdlSubmesh: MDLSubmesh) {
         _indexBuffer = mtkSubmesh.indexBuffer.buffer
         _indexBufferOffset = mtkSubmesh.indexBuffer.offset
         _indexCount = mtkSubmesh.indexCount
         _indexType = mtkSubmesh.indexType
         _primitiveType = mtkSubmesh.primitiveType
+        
+        createTexture(mdlSubmesh.material!)
+        createMaterial(mdlSubmesh.material!)
+    }
+    
+    private func texture(for semantic: MDLMaterialSemantic,
+                         in material: MDLMaterial?,
+                         textureOrigin: MTKTextureLoader.Origin) -> MTLTexture? {
+        let textureLoader = MTKTextureLoader(device: Engine.device)
+        guard let materialProperty = material?.property(with: semantic) else { return nil }
+        guard let sourceTexture = materialProperty.textureSamplerValue?.texture else { return nil }
+        let options: [MTKTextureLoader.Option : Any] = [
+            MTKTextureLoader.Option.origin : textureOrigin as Any,
+            MTKTextureLoader.Option.generateMipmaps : true
+        ]
+        let tex = try? textureLoader.newTexture(texture: sourceTexture, options: options)
+        return tex
+    }
+    
+    private func createTexture(_ mdlMaterial: MDLMaterial) {
+        baseColorTexture = texture(for: .baseColor, in: mdlMaterial, textureOrigin: .bottomLeft)
+    }
+    
+    private func createMaterial(_ mdlMaterial: MDLMaterial) {
+        if let ambient = mdlMaterial.property(with: .emission)?.float3Value { material.ambient = ambient }
+        if let diffuse = mdlMaterial.property(with: .baseColor)?.float3Value { material.diffuse = diffuse }
+        if let specular = mdlMaterial.property(with: .specular)?.float3Value { material.specular = specular }
+        if let shininess = mdlMaterial.property(with: .specularExponent)?.floatValue { material.shininess = shininess }
     }
     
     private func createIndexBuffer() {
@@ -178,6 +223,18 @@ class Submesh {
                                                     length: UInt32.stride(_indices.count),
                                                     options: [])
         }
+    }
+    
+    func applyTextures(renderCommandEncoder: MTLRenderCommandEncoder, customBaseColorTextureType: TextureTypes) {
+        renderCommandEncoder.setFragmentSamplerState(Graphics.SamplerStates[.Linear], index: 0)
+        
+        let baseColorTex = customBaseColorTextureType == .None ? baseColorTexture : Entities.Textures[customBaseColorTextureType]
+        renderCommandEncoder.setFragmentTexture(baseColorTex, index: 0)
+    }
+    
+    func applyMaterials(renderCommandEncoder: MTLRenderCommandEncoder, customMaterial: Material? = nil) {
+        var mat = customMaterial == nil ? material : customMaterial
+        renderCommandEncoder.setFragmentBytes(&mat, length: Material.stride, index: 1)
     }
 }
 
