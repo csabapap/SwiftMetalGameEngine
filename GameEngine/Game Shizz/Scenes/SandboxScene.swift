@@ -4,7 +4,7 @@ class SandboxScene: Scene {
     
     var debugCamera: Camera = DebugCamera()
     var sun = Sun()
-    var chest = Chest()
+    var quad = Quad()
     
     var cameraDirection: Float = -1
     
@@ -18,9 +18,11 @@ class SandboxScene: Scene {
         sun.setAmbientIntensity(0.04)
         addLight(lightObject: sun)
         
-        chest.moveY(-0.5)
-//        chest.setTexture(textureType: .PartyPirateParot)
-        addChild(chest)
+        quad.useBaseColorTexture(textureType: .MetalPlateDiffuse)
+        quad.useNormalMapTexture(.MetalPlateNormal)
+        
+//        quad.moveY(-0.5)
+        addChild(quad)
     }
     
     override func doUpdate() {

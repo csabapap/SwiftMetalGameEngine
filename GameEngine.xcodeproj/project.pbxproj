@@ -41,10 +41,15 @@
 		E870E078278391BC007137DB /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = E870E077278391BC007137DB /* sphere.obj */; };
 		E87B54B12770DC6F00E0DA5A /* InstancedGameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */; };
 		E87B54B32771DEC600E0DA5A /* CubeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87B54B22771DEC600E0DA5A /* CubeCollection.swift */; };
+		E883D32B27D66AC300D34F21 /* normal_example.png in Resources */ = {isa = PBXBuildFile; fileRef = E883D32A27D66AC300D34F21 /* normal_example.png */; };
+		E883D32F27D698AB00D34F21 /* metal_plate_diff.png in Resources */ = {isa = PBXBuildFile; fileRef = E883D32D27D698AB00D34F21 /* metal_plate_diff.png */; };
+		E883D33027D698AB00D34F21 /* metal_plate_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = E883D32E27D698AB00D34F21 /* metal_plate_nor.png */; };
 		E88CD22327AEB4F5009EA911 /* Chest_Metal_Base_Color.png in Resources */ = {isa = PBXBuildFile; fileRef = E88CD22027AEB4F4009EA911 /* Chest_Metal_Base_Color.png */; };
 		E88CD22427AEB4F5009EA911 /* Chest_Wood_Base_Color.png in Resources */ = {isa = PBXBuildFile; fileRef = E88CD22127AEB4F4009EA911 /* Chest_Wood_Base_Color.png */; };
 		E88CD22527AEB4F5009EA911 /* chest.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E88CD22227AEB4F5009EA911 /* chest.mtl */; };
 		E8961447276B8D9700D4447F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8961446276B8D9700D4447F /* ColorUtils.swift */; };
+		E89A1B5727BFF54700702A00 /* quad.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E89A1B5627BFF54700702A00 /* quad.mtl */; };
+		E89A1B5927BFF56B00702A00 /* quad.obj in Resources */ = {isa = PBXBuildFile; fileRef = E89A1B5827BFF56B00702A00 /* quad.obj */; };
 		E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03227873EAD004EB927 /* Imperial.mtl */; };
 		E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */ = {isa = PBXBuildFile; fileRef = E8ACC03327873EAD004EB927 /* Imperial.obj */; };
 		E8ACC03727873FE2004EB927 /* ImperialSpaceShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */; };
@@ -116,10 +121,15 @@
 		E870E077278391BC007137DB /* sphere.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		E87B54B02770DC6F00E0DA5A /* InstancedGameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstancedGameObject.swift; sourceTree = "<group>"; };
 		E87B54B22771DEC600E0DA5A /* CubeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeCollection.swift; sourceTree = "<group>"; };
+		E883D32A27D66AC300D34F21 /* normal_example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_example.png; sourceTree = "<group>"; };
+		E883D32D27D698AB00D34F21 /* metal_plate_diff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal_plate_diff.png; sourceTree = "<group>"; };
+		E883D32E27D698AB00D34F21 /* metal_plate_nor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal_plate_nor.png; sourceTree = "<group>"; };
 		E88CD22027AEB4F4009EA911 /* Chest_Metal_Base_Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chest_Metal_Base_Color.png; sourceTree = "<group>"; };
 		E88CD22127AEB4F4009EA911 /* Chest_Wood_Base_Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chest_Wood_Base_Color.png; sourceTree = "<group>"; };
 		E88CD22227AEB4F5009EA911 /* chest.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chest.mtl; sourceTree = "<group>"; };
 		E8961446276B8D9700D4447F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		E89A1B5627BFF54700702A00 /* quad.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = quad.mtl; sourceTree = "<group>"; };
+		E89A1B5827BFF56B00702A00 /* quad.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = quad.obj; sourceTree = "<group>"; };
 		E8ACC03227873EAD004EB927 /* Imperial.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.mtl; sourceTree = "<group>"; };
 		E8ACC03327873EAD004EB927 /* Imperial.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Imperial.obj; sourceTree = "<group>"; };
 		E8ACC03627873FE2004EB927 /* ImperialSpaceShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialSpaceShip.swift; sourceTree = "<group>"; };
@@ -300,6 +310,25 @@
 			path = character;
 			sourceTree = "<group>";
 		};
+		E883D32C27D6989700D34F21 /* metal_plate */ = {
+			isa = PBXGroup;
+			children = (
+				E883D32D27D698AB00D34F21 /* metal_plate_diff.png */,
+				E883D32E27D698AB00D34F21 /* metal_plate_nor.png */,
+			);
+			path = metal_plate;
+			sourceTree = "<group>";
+		};
+		E89A1B5527BFF52C00702A00 /* quad */ = {
+			isa = PBXGroup;
+			children = (
+				E883D32A27D66AC300D34F21 /* normal_example.png */,
+				E89A1B5627BFF54700702A00 /* quad.mtl */,
+				E89A1B5827BFF56B00702A00 /* quad.obj */,
+			);
+			path = quad;
+			sourceTree = "<group>";
+		};
 		E8ACC03127873E7A004EB927 /* imperial */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +458,8 @@
 		E8F0F0362780E63E00B86738 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				E883D32C27D6989700D34F21 /* metal_plate */,
+				E89A1B5527BFF52C00702A00 /* quad */,
 				E8B573CC2796C1EB00849F52 /* chest */,
 				E8B573C5279600B100849F52 /* suzannes */,
 				E8ACC03127873E7A004EB927 /* imperial */,
@@ -510,10 +541,12 @@
 				E8B573C8279600C200849F52 /* suzannes.mtl in Resources */,
 				A626790A274CD23F0087FE51 /* Assets.xcassets in Resources */,
 				E8B573C9279600C200849F52 /* suzannes.obj in Resources */,
+				E883D33027D698AB00D34F21 /* metal_plate_nor.png in Resources */,
 				E8B573CE2796C1F900849F52 /* chest.obj in Resources */,
 				E8F0F045278215C500B86738 /* cruiser.obj in Resources */,
 				E870E06D27825C83007137DB /* Character.mtl in Resources */,
 				E870E06E27825C83007137DB /* Character.obj in Resources */,
+				E883D32F27D698AB00D34F21 /* metal_plate_diff.png in Resources */,
 				E870E078278391BC007137DB /* sphere.obj in Resources */,
 				E8F0F03A2780E71A00B86738 /* PartyPirateParot.png in Resources */,
 				E88CD22527AEB4F5009EA911 /* chest.mtl in Resources */,
@@ -523,8 +556,11 @@
 				E88CD22427AEB4F5009EA911 /* Chest_Wood_Base_Color.png in Resources */,
 				E8ACC03527873EAD004EB927 /* Imperial.obj in Resources */,
 				E8ACC03427873EAD004EB927 /* Imperial.mtl in Resources */,
+				E89A1B5927BFF56B00702A00 /* quad.obj in Resources */,
 				E88CD22327AEB4F5009EA911 /* Chest_Metal_Base_Color.png in Resources */,
 				E8F0F047278215C500B86738 /* cruiser.mtl in Resources */,
+				E89A1B5727BFF54700702A00 /* quad.mtl in Resources */,
+				E883D32B27D66AC300D34F21 /* normal_example.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

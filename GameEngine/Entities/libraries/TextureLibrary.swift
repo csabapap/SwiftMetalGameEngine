@@ -5,6 +5,9 @@ enum TextureTypes {
     case PartyPirateParot
     case Cruiser
     case Imperial
+    
+    case MetalPlateDiffuse
+    case MetalPlateNormal
 }
 
 class TextureLibrary: Library<TextureTypes, MTLTexture> {
@@ -15,6 +18,9 @@ class TextureLibrary: Library<TextureTypes, MTLTexture> {
         library.updateValue(Texture("PartyPirateParot"), forKey: .PartyPirateParot)
         library.updateValue(Texture("cruiser", ext: "bmp", origin: .bottomLeft), forKey: .Cruiser)
         library.updateValue(Texture("Imperial_Red", ext: "png", origin: .bottomLeft), forKey: .Imperial)
+        
+        library.updateValue(Texture("metal_plate_diff", ext: "png"), forKey: .MetalPlateDiffuse)
+        library.updateValue(Texture("metal_plate_nor", ext: "png"), forKey: .MetalPlateNormal)
     }
     
     override subscript(type: TextureTypes) -> MTLTexture? {

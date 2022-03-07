@@ -38,7 +38,7 @@ class Lighting {
                 float rDotV = max(dot(unitReflectionVector, unitToCameraVector), 0.0);
                 float specularExp = pow(rDotV, material.shininess);
                 float3 specularColor = clamp(specularness * specularExp * lightData.color * lightData.brightness, 0.0, 1.0);
-                totalSpecular += specularColor;
+                totalSpecular += specularColor * 10;
             }
             
             float3 phongIntensity = totalAmbient + totalDiffuse + totalSpecular;

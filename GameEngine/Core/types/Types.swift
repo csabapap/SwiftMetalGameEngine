@@ -41,6 +41,8 @@ struct Vertex: sizeable {
     var color: float4
     var textureCoordinates: float2
     var normal: float3
+    var tangent: float3
+    var bitangent: float3
 };
 
 struct ModelConstants: sizeable {

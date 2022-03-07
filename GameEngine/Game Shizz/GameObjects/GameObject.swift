@@ -5,6 +5,7 @@ class GameObject: Node {
     var modelConstants = ModelConstants()
     private var material = Material()
     private var baseColorTextureType: TextureTypes = .None
+    private var normalMapTextureType: TextureTypes = .None
     
     var mesh: Mesh!
     
@@ -33,7 +34,8 @@ extension GameObject: Renderable {
 //        renderCommandEncoder.setFragmentBytes(&material, length: Material.stride, index: 1)
         
         mesh.drawPrimitives(renderCommandEncoder,
-                            baseColorTextureType: baseColorTextureType)
+                            baseColorTextureType: baseColorTextureType,
+                            normalMapTextureType: normalMapTextureType)
     }
 }
 
@@ -46,8 +48,12 @@ extension GameObject {
         setMaterialColor(float4(r,g,b,a))
     }
     
-    func setTexture(textureType: TextureTypes) {
+    func useBaseColorTexture(textureType: TextureTypes) {
         self.baseColorTextureType = textureType
+    }
+    
+    func useNormalMapTexture(_ textureType: TextureTypes) {
+        self.normalMapTextureType = textureType
     }
     
     // Is Lit

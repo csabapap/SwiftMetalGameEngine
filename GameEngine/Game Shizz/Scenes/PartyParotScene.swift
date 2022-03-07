@@ -25,7 +25,7 @@ class PartyParotScene: Scene {
         quad.setMaterialAmbient(0.01)
         quad.setMaterialShininess(10)
         quad.setMaterialSpecular(5)
-        quad.setTexture(textureType: .PartyPirateParot)
+        quad.useBaseColorTexture(textureType: .PartyPirateParot)
         addChild(quad)
         
     }
